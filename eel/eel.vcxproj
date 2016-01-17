@@ -145,8 +145,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="ShaderLoader.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ShaderLoader.h" />
     <ClInclude Include="Libs\freeglut\freeglut.h" />
     <ClInclude Include="Libs\freeglut\freeglut_ext.h" />
     <ClInclude Include="Libs\freeglut\freeglut_std.h" />
