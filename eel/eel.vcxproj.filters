@@ -16,6 +16,18 @@
     <Filter Include="Shaders">
       <UniqueIdentifier>{ec5760a6-1269-4bc4-a910-4e434d60e023}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\glm">
+      <UniqueIdentifier>{16a2455e-71f7-410b-8864-fd79aeadf80b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\freeglut">
+      <UniqueIdentifier>{a05ef624-63a1-4656-a6ef-7028fae986ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\glew">
+      <UniqueIdentifier>{8a7fcf8c-8152-4453-84a9-a35335107e32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Libs">
+      <UniqueIdentifier>{3b6e8b62-0a46-4d0a-b851-e748ca4cc7b7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -24,118 +36,139 @@
     <ClCompile Include="ShaderLoader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Models.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Libs\glew\glew.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Libs\glew\glxew.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Libs\glew\wglew.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Libs\freeglut\glut.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Libs\freeglut\freeglut.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Libs\freeglut\freeglut_ext.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Libs\freeglut\freeglut_std.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ShaderLoader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Libs\freeglut\freeglut.h">
+      <Filter>Header Files\freeglut</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\freeglut\freeglut_ext.h">
+      <Filter>Header Files\freeglut</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\freeglut\freeglut_std.h">
+      <Filter>Header Files\freeglut</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\freeglut\glut.h">
+      <Filter>Header Files\freeglut</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\glew\glew.h">
+      <Filter>Header Files\glew</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\glew\glxew.h">
+      <Filter>Header Files\glew</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\glew\wglew.h">
+      <Filter>Header Files\glew</Filter>
+    </ClInclude>
     <ClInclude Include="Libs\glm\common.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\glm</Filter>
     </ClInclude>
     <ClInclude Include="Libs\glm\exponential.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\glm</Filter>
     </ClInclude>
     <ClInclude Include="Libs\glm\ext.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\glm</Filter>
     </ClInclude>
     <ClInclude Include="Libs\glm\fwd.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\glm</Filter>
     </ClInclude>
     <ClInclude Include="Libs\glm\geometric.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\glm</Filter>
     </ClInclude>
     <ClInclude Include="Libs\glm\glm.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\glm</Filter>
     </ClInclude>
     <ClInclude Include="Libs\glm\integer.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\glm</Filter>
     </ClInclude>
     <ClInclude Include="Libs\glm\mat2x2.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\glm</Filter>
     </ClInclude>
     <ClInclude Include="Libs\glm\mat2x3.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\glm</Filter>
     </ClInclude>
     <ClInclude Include="Libs\glm\mat2x4.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\glm</Filter>
     </ClInclude>
     <ClInclude Include="Libs\glm\mat3x2.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\glm</Filter>
     </ClInclude>
     <ClInclude Include="Libs\glm\mat3x3.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\glm</Filter>
     </ClInclude>
     <ClInclude Include="Libs\glm\mat3x4.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\glm</Filter>
     </ClInclude>
     <ClInclude Include="Libs\glm\mat4x2.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\glm</Filter>
     </ClInclude>
     <ClInclude Include="Libs\glm\mat4x3.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\glm</Filter>
     </ClInclude>
     <ClInclude Include="Libs\glm\mat4x4.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\glm</Filter>
     </ClInclude>
     <ClInclude Include="Libs\glm\matrix.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\glm</Filter>
     </ClInclude>
     <ClInclude Include="Libs\glm\packing.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\glm</Filter>
     </ClInclude>
     <ClInclude Include="Libs\glm\trigonometric.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\glm</Filter>
     </ClInclude>
     <ClInclude Include="Libs\glm\vec2.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\glm</Filter>
     </ClInclude>
     <ClInclude Include="Libs\glm\vec3.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\glm</Filter>
     </ClInclude>
     <ClInclude Include="Libs\glm\vec4.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\glm</Filter>
     </ClInclude>
     <ClInclude Include="Libs\glm\vector_relational.hpp">
+      <Filter>Header Files\glm</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexFormat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Models.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="Libs\glew\glew32.lib" />
-    <Library Include="Libs\glew\glew32s.lib" />
-    <Library Include="Libs\freeglut\freeglut.lib" />
+    <Library Include="Libs\glew\glew32s.lib">
+      <Filter>Resource Files\Libs</Filter>
+    </Library>
+    <Library Include="Libs\freeglut\freeglut.lib">
+      <Filter>Resource Files\Libs</Filter>
+    </Library>
+    <Library Include="Libs\glew\glew32.lib">
+      <Filter>Resource Files\Libs</Filter>
+    </Library>
   </ItemGroup>
   <ItemGroup>
-    <None Include="freeglut.dll" />
-    <None Include="glew32.dll" />
     <None Include="Shaders\VertexShader.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="freeglut.dll">
+      <Filter>Resource Files\Libs</Filter>
+    </None>
+    <None Include="glew32.dll">
+      <Filter>Resource Files\Libs</Filter>
+    </None>
+    <None Include="Shaders\FragmentShader.glsl">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="FragmentShader.glsl">
-      <Filter>Shaders</Filter>
+    <Text Include="Libs\glm\CMakeLists.txt">
+      <Filter>Header Files\glm</Filter>
     </Text>
-    <Text Include="Libs\glm\CMakeLists.txt" />
   </ItemGroup>
 </Project>

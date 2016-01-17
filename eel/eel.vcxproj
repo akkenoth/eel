@@ -144,10 +144,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Models.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ShaderLoader.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Models.h" />
+    <ClInclude Include="VertexFormat.h" />
     <ClInclude Include="Libs\glm\common.hpp" />
     <ClInclude Include="Libs\glm\exponential.hpp" />
     <ClInclude Include="Libs\glm\ext.hpp" />
@@ -190,10 +193,10 @@
       <FileType>Document</FileType>
     </None>
     <None Include="glew32.dll" />
+    <None Include="Shaders\FragmentShader.glsl" />
     <None Include="Shaders\VertexShader.glsl" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="FragmentShader.glsl" />
     <Text Include="Libs\glm\CMakeLists.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
