@@ -1,6 +1,9 @@
-#version 430 core
-out vec4 color;
+#version 410 core
+
+layout(location = 0) out vec4 out_color; // To framebuffer, color location
+
+in vec4 color; // From vertex shader, name must be preserved between shaders!
 
 void main(void) {
-	color = vec4(0.0, 1.0, 0.0, 1.0);
+	out_color = color;
 }

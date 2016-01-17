@@ -1,9 +1,11 @@
-#version 430 core
+#version 410 core
+
+layout(location = 0) in vec3 in_position;
+layout(location = 1) in vec4 in_color;
+
+out vec4 color; // To fragment shader
 
 void main(void) {
-	const vec4 vertices[12] = vec4[12](vec4(-0.25, -0.25, 0.5, 1.0), vec4(0.25, -0.25, 0.5, 1.0), vec4(0.0, 0.0, 0.5, 1.0),
-									vec4(-0.25, 0.25, 0.5, 1.0), vec4(0.25, 0.25, 0.5, 1.0), vec4(0.0, 0.0, 0.5, 1.0),
-									vec4(-0.25, -0.25, 0.5, 1.0), vec4(-0.25, 0.25, 0.5, 1.0), vec4(-0.5, 0.0, 0.5, 1.0),
-									vec4(0.25, -0.25, 0.5, 1.0), vec4(0.25, 0.25, 0.5, 1.0), vec4(0.5, 0.0, 0.5, 1.0));
-	gl_Position = vertices[gl_VertexID];
+	color = in_color;
+	gl_Position = vec4(in_position, 1.0);
 }
