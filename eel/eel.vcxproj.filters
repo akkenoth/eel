@@ -59,5 +59,13 @@
   <ItemGroup>
     <None Include="freeglut.dll" />
     <None Include="glew32.dll" />
+    <None Include="Shaders\VertexShader.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="FragmentShader.glsl">
+      <Filter>Shaders</Filter>
+    </Text>
   </ItemGroup>
 </Project>
