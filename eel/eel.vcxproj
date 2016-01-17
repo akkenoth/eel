@@ -146,6 +146,26 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Libs\freeglut\freeglut.h" />
+    <ClInclude Include="Libs\freeglut\freeglut_ext.h" />
+    <ClInclude Include="Libs\freeglut\freeglut_std.h" />
+    <ClInclude Include="Libs\freeglut\glut.h" />
+    <ClInclude Include="Libs\glew\glew.h" />
+    <ClInclude Include="Libs\glew\glxew.h" />
+    <ClInclude Include="Libs\glew\wglew.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="Libs\freeglut\freeglut.lib" />
+    <Library Include="Libs\glew\glew32.lib" />
+    <Library Include="Libs\glew\glew32s.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="freeglut.dll">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="glew32.dll" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
