@@ -148,6 +148,29 @@
     <ClCompile Include="ShaderLoader.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Libs\glm\common.hpp" />
+    <ClInclude Include="Libs\glm\exponential.hpp" />
+    <ClInclude Include="Libs\glm\ext.hpp" />
+    <ClInclude Include="Libs\glm\fwd.hpp" />
+    <ClInclude Include="Libs\glm\geometric.hpp" />
+    <ClInclude Include="Libs\glm\glm.hpp" />
+    <ClInclude Include="Libs\glm\integer.hpp" />
+    <ClInclude Include="Libs\glm\mat2x2.hpp" />
+    <ClInclude Include="Libs\glm\mat2x3.hpp" />
+    <ClInclude Include="Libs\glm\mat2x4.hpp" />
+    <ClInclude Include="Libs\glm\mat3x2.hpp" />
+    <ClInclude Include="Libs\glm\mat3x3.hpp" />
+    <ClInclude Include="Libs\glm\mat3x4.hpp" />
+    <ClInclude Include="Libs\glm\mat4x2.hpp" />
+    <ClInclude Include="Libs\glm\mat4x3.hpp" />
+    <ClInclude Include="Libs\glm\mat4x4.hpp" />
+    <ClInclude Include="Libs\glm\matrix.hpp" />
+    <ClInclude Include="Libs\glm\packing.hpp" />
+    <ClInclude Include="Libs\glm\trigonometric.hpp" />
+    <ClInclude Include="Libs\glm\vec2.hpp" />
+    <ClInclude Include="Libs\glm\vec3.hpp" />
+    <ClInclude Include="Libs\glm\vec4.hpp" />
+    <ClInclude Include="Libs\glm\vector_relational.hpp" />
     <ClInclude Include="ShaderLoader.h" />
     <ClInclude Include="Libs\freeglut\freeglut.h" />
     <ClInclude Include="Libs\freeglut\freeglut_ext.h" />
@@ -171,6 +194,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="FragmentShader.glsl" />
+    <Text Include="Libs\glm\CMakeLists.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
