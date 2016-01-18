@@ -82,10 +82,6 @@ void Initializer::idleCallback() {
 
 void Initializer::displayCallback() {
 	if(!listener) {
-		// Due to removal
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		glClearColor(0.0, 0.0, 0.0, 1);
-		glutSwapBuffers();
 		return;
 	}
 

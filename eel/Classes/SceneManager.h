@@ -1,11 +1,13 @@
 #pragma once
 
 #include "ShaderManager.h"
+#include "ModelManager.h"
 #include "../Interfaces/GLUTListener.h"
 
 class SceneManager : public GLUTListener {
 private:
 	ShaderManager* shaderManager;
+	ModelManager* modelManager;
 public:
 	SceneManager();
 	~SceneManager();

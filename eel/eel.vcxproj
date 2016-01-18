@@ -145,6 +145,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Classes\Initializer.cpp" />
+    <ClCompile Include="Classes\ModelManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Classes\ShaderManager.cpp" />
     <ClCompile Include="Classes\SceneManager.cpp" />
@@ -153,6 +154,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Classes\Initializer.h" />
+    <ClInclude Include="Classes\ModelManager.h" />
     <ClInclude Include="Interfaces\GLUTListener.h" />
     <ClInclude Include="Classes\SceneManager.h" />
     <ClInclude Include="Interfaces\RenderObject.h" />
@@ -161,43 +163,8 @@
     <ClInclude Include="Structures\FramebufferInfo.h" />
     <ClInclude Include="Structures\WindowInfo.h" />
     <ClInclude Include="Structures\VertexFormat.h" />
-    <ClInclude Include="Libs\glm\common.hpp" />
-    <ClInclude Include="Libs\glm\exponential.hpp" />
-    <ClInclude Include="Libs\glm\ext.hpp" />
-    <ClInclude Include="Libs\glm\fwd.hpp" />
-    <ClInclude Include="Libs\glm\geometric.hpp" />
-    <ClInclude Include="Libs\glm\glm.hpp" />
-    <ClInclude Include="Libs\glm\integer.hpp" />
-    <ClInclude Include="Libs\glm\mat2x2.hpp" />
-    <ClInclude Include="Libs\glm\mat2x3.hpp" />
-    <ClInclude Include="Libs\glm\mat2x4.hpp" />
-    <ClInclude Include="Libs\glm\mat3x2.hpp" />
-    <ClInclude Include="Libs\glm\mat3x3.hpp" />
-    <ClInclude Include="Libs\glm\mat3x4.hpp" />
-    <ClInclude Include="Libs\glm\mat4x2.hpp" />
-    <ClInclude Include="Libs\glm\mat4x3.hpp" />
-    <ClInclude Include="Libs\glm\mat4x4.hpp" />
-    <ClInclude Include="Libs\glm\matrix.hpp" />
-    <ClInclude Include="Libs\glm\packing.hpp" />
-    <ClInclude Include="Libs\glm\trigonometric.hpp" />
-    <ClInclude Include="Libs\glm\vec2.hpp" />
-    <ClInclude Include="Libs\glm\vec3.hpp" />
-    <ClInclude Include="Libs\glm\vec4.hpp" />
-    <ClInclude Include="Libs\glm\vector_relational.hpp" />
     <ClInclude Include="Classes\ShaderManager.h" />
-    <ClInclude Include="Libs\freeglut\freeglut.h" />
-    <ClInclude Include="Libs\freeglut\freeglut_ext.h" />
-    <ClInclude Include="Libs\freeglut\freeglut_std.h" />
-    <ClInclude Include="Libs\freeglut\glut.h" />
-    <ClInclude Include="Libs\glew\glew.h" />
-    <ClInclude Include="Libs\glew\glxew.h" />
-    <ClInclude Include="Libs\glew\wglew.h" />
     <ClInclude Include="Classes\Triangle.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="Libs\freeglut\freeglut.lib" />
-    <Library Include="Libs\glew\glew32.lib" />
-    <Library Include="Libs\glew\glew32s.lib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="freeglut.dll">
@@ -206,9 +173,6 @@
     <None Include="glew32.dll" />
     <None Include="Shaders\FragmentShader.glsl" />
     <None Include="Shaders\VertexShader.glsl" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="Libs\glm\CMakeLists.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
