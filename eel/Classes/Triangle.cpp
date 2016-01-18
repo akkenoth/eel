@@ -1,17 +1,10 @@
-#include "Models.h"
+#include "Triangle.h"
 
-Models::Models() {}
-Models::~Models() {
-	for(std::map<std::string, Model>::iterator it = modelList.begin(); it != modelList.end(); ++it) {
-		GLuint* p = &it->second.vao;
-		glDeleteVertexArrays(1, p);
-		glDeleteBuffers(it->second.vbos.size(), &it->second.vbos[0]);
-		it->second.vbos.clear();
-	}
-	modelList.clear();
-}
+Triangle::Triangle() {}
 
-void Models::createTriangleModel(const std::string& modelName) {
+Triangle::~Triangle() {}
+
+void Triangle::create() {
 	GLuint vao;
 	glGenVertexArrays(1, &vao);
 	glBindVertexArray(vao);
@@ -32,21 +25,14 @@ void Models::createTriangleModel(const std::string& modelName) {
 	glEnableVertexAttribArray(1);
 	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(VertexFormat), (void*)(offsetof(VertexFormat, VertexFormat::color)));
 
-	Model testTriangle;
-	testTriangle.vao = vao;
-	testTriangle.vbos.push_back(vbo);
-	modelList[modelName] = testTriangle;
+	this->vao = vao;
+	this->vbos.push_back(vbo);
 }
 
-void Models::deleteModel(const std::string& modelName) {
-	Model m = modelList[modelName];
-	GLuint p = m.vao;
-	glDeleteVertexArrays(1, &p);
-	glDeleteBuffers(m.vbos.size(), &m.vbos[0]);
-	m.vbos.clear();
-	modelList.erase(modelName);
-}
+void Triangle::update() {}
 
-GLuint Models::getModel(const std::string& modelName) {
-	return modelList[modelName].vao;
+void Triangle::draw() {
+	glUseProgram(program);
+	glBindVertexArray(vao);
+	glDrawArrays(GL_TRIANGLES, 0, 3);
 }
