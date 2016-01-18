@@ -145,11 +145,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Classes\Models.cpp" />
+    <ClCompile Include="Classes\Initializer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Classes\ShaderManager.cpp" />
+    <ClCompile Include="Classes\SceneManager.cpp" />
+    <ClCompile Include="Classes\RenderObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Classes\Models.h" />
+    <ClInclude Include="Classes\Initializer.h" />
+    <ClInclude Include="Interfaces\GLUTListener.h" />
+    <ClInclude Include="Classes\SceneManager.h" />
+    <ClInclude Include="Classes\RenderObject.h" />
     <ClInclude Include="Structures\ContextInfo.h" />
     <ClInclude Include="Structures\FramebufferInfo.h" />
     <ClInclude Include="Structures\WindowInfo.h" />
