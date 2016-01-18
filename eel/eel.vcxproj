@@ -146,7 +146,7 @@
   <ItemGroup>
     <ClCompile Include="Models.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="ShaderLoader.cpp" />
+    <ClCompile Include="ShaderManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Models.h" />
@@ -174,7 +174,7 @@
     <ClInclude Include="Libs\glm\vec3.hpp" />
     <ClInclude Include="Libs\glm\vec4.hpp" />
     <ClInclude Include="Libs\glm\vector_relational.hpp" />
-    <ClInclude Include="ShaderLoader.h" />
+    <ClInclude Include="ShaderManager.h" />
     <ClInclude Include="Libs\freeglut\freeglut.h" />
     <ClInclude Include="Libs\freeglut\freeglut_ext.h" />
     <ClInclude Include="Libs\freeglut\freeglut_std.h" />

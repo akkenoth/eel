@@ -2,20 +2,23 @@
 
 #include "Libs/glew/glew.h"
 #include "Libs/freeglut/freeglut.h"
-#include "ShaderLoader.h"
+#include "ShaderManager.h"
 #include "Models.h"
 
 GLuint program;
 Models* models;
+ShaderManager* manager;
 
 void init() {
 	glEnable(GL_DEPTH_TEST);
 	models = new Models();
 	models->createTriangleModel("testTriangle");
 
-	ShaderLoader loader;
-	program = loader.createProgram("Shaders\\VertexShader.glsl", "Shaders\\FragmentShader.glsl");
-	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	manager = new ShaderManager();
+	manager->createProgram("simpleColorShader", "Shaders\\VertexShader.glsl", "Shaders\\FragmentShader.glsl");
+
+	program = ShaderManager::getShader("simpleColorShader");
+	//glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }
 
 void close() {
@@ -37,15 +40,18 @@ int main(int argc, char** argv) {
 	glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
 	glutInitWindowPosition(500, 500); //optional
 	glutInitWindowSize(800, 800); //optional
+
+	glutInitContextVersion(4, 1);
+	glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_GLUTMAINLOOP_RETURNS);
 	glutCreateWindow("EEL");
 
+	glewExperimental = true;
 	glewInit();
 	if(glewIsSupported("GL_VERSION_4_1")) {
 		std::cout << "OpenGL version 4.1 supported.\n";
 	} else {
 		std::cout << "OpenGL version 4.1 NOT supported.\n";
 	}
-	std::cout << "offset of color in VF:" << offsetof(VertexFormat, VertexFormat::color) << "\n";
 
 	init();
 	glutDisplayFunc(renderScene);
@@ -53,6 +59,6 @@ int main(int argc, char** argv) {
 	glutMainLoop();
 
 	delete models;
-	glDeleteProgram(program);
+	delete manager;
 	return 0;
 }
