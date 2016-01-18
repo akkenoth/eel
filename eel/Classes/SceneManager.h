@@ -10,9 +10,9 @@ public:
 	SceneManager();
 	~SceneManager();
 
-	virtual void notifyFrameBegin();
-	virtual void notifyFrameDisplay();
-	virtual void notifyFrameEnd();
-	virtual void notifyReshape(int width, int height, int previousWidth, int previousHeight);
+	virtual void notifyFrameBegin() override;
+	virtual void notifyFrameDisplay() override;
+	virtual void notifyFrameEnd() override;
+	virtual void notifyReshape(int width, int height, int previousWidth, int previousHeight) override;
 };
 
