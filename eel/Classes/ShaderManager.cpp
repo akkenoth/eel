@@ -76,7 +76,7 @@ void ShaderManager::createProgram(const std::string& shaderName, const std::stri
 	programs[shaderName] = program;
 }
 
-const GLuint ShaderManager::getShader(const std::string& shaderName) {
+const GLuint ShaderManager::getProgram(const std::string& shaderName) {
 	try {
 		return programs.at(shaderName);
 	} catch(std::string e) {

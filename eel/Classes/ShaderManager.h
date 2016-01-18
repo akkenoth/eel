@@ -18,6 +18,6 @@ public:
 	ShaderManager();
 	~ShaderManager();
 	void createProgram(const std::string& shaderName, const std::string& vertexShaderFilename, const std::string& fragmentShaderFilename);
-	static const GLuint getShader(const std::string&);
+	static const GLuint getProgram(const std::string&);
 	void deleteProgram(const std::string& shaderName);
 };
