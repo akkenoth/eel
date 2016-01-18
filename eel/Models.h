@@ -15,6 +15,7 @@ struct Model {
 	std::vector<GLuint> vbos;
 
 	Model() {}
+	~Model() {}
 };
 
 class Models {
