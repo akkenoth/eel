@@ -146,6 +146,7 @@
   <ItemGroup>
     <ClCompile Include="Classes\Initializer.cpp" />
     <ClCompile Include="Classes\ModelManager.cpp" />
+    <ClCompile Include="Classes\Tetragon.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Classes\ShaderManager.cpp" />
     <ClCompile Include="Classes\SceneManager.cpp" />
@@ -155,6 +156,7 @@
   <ItemGroup>
     <ClInclude Include="Classes\Initializer.h" />
     <ClInclude Include="Classes\ModelManager.h" />
+    <ClInclude Include="Classes\Tetragon.h" />
     <ClInclude Include="Interfaces\GLUTListener.h" />
     <ClInclude Include="Classes\SceneManager.h" />
     <ClInclude Include="Interfaces\RenderObject.h" />

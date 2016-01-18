@@ -2,6 +2,7 @@
 
 #include "ShaderManager.h"
 #include "Triangle.h"
+#include "Tetragon.h"
 
 class ModelManager {
 private:

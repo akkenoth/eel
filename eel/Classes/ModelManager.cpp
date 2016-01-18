@@ -1,10 +1,15 @@
 #include "ModelManager.h"
 
 ModelManager::ModelManager() {
-	Triangle* t = new Triangle();
-	t->setProgram(ShaderManager::getProgram("simpleColorShader"));
-	t->create();
-	modelList["triangle1"] = t;
+	Triangle* t3 = new Triangle();
+	t3->setProgram(ShaderManager::getProgram("simpleColorShader"));
+	t3->create();
+	modelList["triangle1"] = t3;
+
+	Tetragon* t4 = new Tetragon();
+	t4->setProgram(ShaderManager::getProgram("simpleColorShader"));
+	t4->create();
+	modelList["tetragon1"] = t4;
 }
 
 ModelManager::~ModelManager() {
