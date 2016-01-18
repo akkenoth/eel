@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Libs/glm/glm.hpp"
+#include "../Libs/glm/glm.hpp"
 
 struct VertexFormat {
 	// X, Y, Z

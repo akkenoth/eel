@@ -3,9 +3,9 @@
 #include <vector>
 #include <map>
 
-#include "Libs/glew/glew.h"
-#include "Libs/freeglut/freeglut.h"
-#include "VertexFormat.h"
+#include "../Libs/glew/glew.h"
+#include "../Libs/freeglut/freeglut.h"
+#include "../Structures/VertexFormat.h"
 
 // Move inside Models?
 struct Model {

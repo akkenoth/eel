@@ -2,8 +2,8 @@
 
 #include "Libs/glew/glew.h"
 #include "Libs/freeglut/freeglut.h"
-#include "ShaderManager.h"
-#include "Models.h"
+#include "Classes/ShaderManager.h"
+#include "Classes/Models.h"
 
 GLuint program;
 Models* models;

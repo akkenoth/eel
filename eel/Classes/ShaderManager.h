@@ -5,8 +5,8 @@
 #include <vector>
 #include <map>
 
-#include "Libs/glew/glew.h"
-#include "Libs/freeglut/freeglut.h"
+#include "../Libs/glew/glew.h"
+#include "../Libs/freeglut/freeglut.h"
 
 class ShaderManager {
 private:
