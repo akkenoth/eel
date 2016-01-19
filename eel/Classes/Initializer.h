@@ -7,6 +7,7 @@
 #include "../Structures/FramebufferInfo.h"
 #include "../Structures/WindowInfo.h"
 #include "../Interfaces/GLUTListener.h"
+#include "DebugOutput.h"
 
 class Initializer {
 private:

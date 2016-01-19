@@ -35,9 +35,12 @@ void Initializer::initGLUT(const WindowInfo& w, const ContextInfo& c, const Fram
 	glutInitDisplayMode(f.flags);
 	glutInitWindowPosition(w.positionX, w.positionY);
 	glutInitWindowSize(w.width, w.height);
+	// in case GL_DEBUG_OUTPUT doesn't work
+	// glutInitContextFlags(GLUT_DEBUG);
 	glutCreateWindow(w.name.c_str());
 
 	std::cout << "GLUT initialized\n";
+	glEnable(GL_DEBUG_OUTPUT);
 
 	glutIdleFunc(idleCallback);
 	glutDisplayFunc(displayCallback);
@@ -46,6 +49,8 @@ void Initializer::initGLUT(const WindowInfo& w, const ContextInfo& c, const Fram
 
 	initGLEW();
 
+	glDebugMessageCallback(DebugOutput::printDebugOutput, NULL);
+	glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, NULL, GL_TRUE);
 	glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_GLUTMAINLOOP_RETURNS);
 
 	windowInfo = w;
