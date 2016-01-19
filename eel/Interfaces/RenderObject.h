@@ -11,6 +11,7 @@ public:
 	virtual ~RenderObject() = 0;
 
 	virtual void draw() = 0;
+	virtual void draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix) = 0;
 	virtual void update() = 0;
 	virtual void destroy() = 0;
 	virtual void setProgram(GLuint shaderName) = 0;
