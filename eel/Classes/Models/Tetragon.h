@@ -1,6 +1,6 @@
 #pragma once
 
-#include "RenderModel.h"
+#include "../RenderModel.h"
 
 class Tetragon : public RenderModel {
 public:
