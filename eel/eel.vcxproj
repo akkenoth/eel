@@ -144,19 +144,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Classes\DebugOutput.cpp" />
     <ClCompile Include="Classes\Initializer.cpp" />
     <ClCompile Include="Classes\ModelManager.cpp" />
-    <ClCompile Include="Classes\Tetragon.cpp" />
+    <ClCompile Include="Classes\Models\Cube.cpp" />
+    <ClCompile Include="Classes\Models\Tetragon.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Classes\ShaderManager.cpp" />
     <ClCompile Include="Classes\SceneManager.cpp" />
     <ClCompile Include="Classes\RenderModel.cpp" />
-    <ClCompile Include="Classes\Triangle.cpp" />
+    <ClCompile Include="Classes\Models\Triangle.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Classes\DebugOutput.h" />
     <ClInclude Include="Classes\Initializer.h" />
     <ClInclude Include="Classes\ModelManager.h" />
-    <ClInclude Include="Classes\Tetragon.h" />
+    <ClInclude Include="Classes\Models\Cube.h" />
+    <ClInclude Include="Classes\Models\Tetragon.h" />
     <ClInclude Include="Interfaces\GLUTListener.h" />
     <ClInclude Include="Classes\SceneManager.h" />
     <ClInclude Include="Interfaces\RenderObject.h" />
@@ -166,7 +170,7 @@
     <ClInclude Include="Structures\WindowInfo.h" />
     <ClInclude Include="Structures\VertexFormat.h" />
     <ClInclude Include="Classes\ShaderManager.h" />
-    <ClInclude Include="Classes\Triangle.h" />
+    <ClInclude Include="Classes\Models\Triangle.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="freeglut.dll">
