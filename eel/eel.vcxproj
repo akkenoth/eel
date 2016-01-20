@@ -147,6 +147,7 @@
     <ClCompile Include="Engine\DebugOutput.cpp" />
     <ClCompile Include="Engine\Engine.cpp" />
     <ClCompile Include="Engine\ModelManager.cpp" />
+    <ClCompile Include="Engine\TextureLoader.cpp" />
     <ClCompile Include="Models\Cube.cpp" />
     <ClCompile Include="Models\Tetragon.cpp" />
     <ClCompile Include="main.cpp" />
@@ -159,8 +160,11 @@
     <ClInclude Include="Engine\DebugOutput.h" />
     <ClInclude Include="Engine\Engine.h" />
     <ClInclude Include="Engine\ModelManager.h" />
+    <ClInclude Include="Engine\TextureLoader.h" />
     <ClInclude Include="Libs\GLWrapper.h" />
     <ClInclude Include="Libs\GLMWrapper.h" />
+    <ClInclude Include="Libs\glewWrapper.h" />
+    <ClInclude Include="Libs\glutWrapper.h" />
     <ClInclude Include="Models\Cube.h" />
     <ClInclude Include="Models\Tetragon.h" />
     <ClInclude Include="Interfaces\GLUTListener.h" />
@@ -169,6 +173,7 @@
     <ClInclude Include="Models\RenderModel.h" />
     <ClInclude Include="Structures\ContextInfo.h" />
     <ClInclude Include="Structures\FramebufferInfo.h" />
+    <ClInclude Include="Structures\BMPHeader.h" />
     <ClInclude Include="Structures\WindowInfo.h" />
     <ClInclude Include="Structures\VertexFormat.h" />
     <ClInclude Include="Engine\ShaderManager.h" />
@@ -179,8 +184,10 @@
       <FileType>Document</FileType>
     </None>
     <None Include="glew32.dll" />
-    <None Include="Shaders\FragmentShader.glsl" />
-    <None Include="Shaders\VertexShader.glsl" />
+    <None Include="Shaders\FragmentColorShader.glsl" />
+    <None Include="Shaders\VertexColorShader.glsl" />
+    <None Include="Shaders\VertexTextureShader.glsl" />
+    <None Include="Shaders\FragmentTextureShader.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
