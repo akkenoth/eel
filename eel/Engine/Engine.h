@@ -9,12 +9,14 @@
 #include "ModelManager.h"
 #include "SceneManager.h"
 #include "ShaderManager.h"
+#include "TextureLoader.h"
 
 class Engine {
 private:
 	ModelManager* modelManager;
 	SceneManager* sceneManager;
 	ShaderManager* shaderManager;
+	TextureLoader* textureLoader;
 
 	static WindowInfo* window;
 	FramebufferInfo* framebuffer;
@@ -37,6 +39,7 @@ public:
 	ModelManager* getModelManager() const;
 	SceneManager* getSceneManager() const;
 	ShaderManager* getShaderManager() const;
+	TextureLoader* getTextureLoader() const;
 
 	void enterFullscreen();
 	void exitFullscreen();

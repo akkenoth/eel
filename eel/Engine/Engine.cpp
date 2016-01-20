@@ -24,6 +24,9 @@ Engine::~Engine() {
 	if(framebuffer) {
 		delete framebuffer;
 	}
+	if(textureLoader) {
+		delete textureLoader;
+	}
 }
 
 void Engine::initGLEW() {
@@ -115,8 +118,9 @@ bool Engine::init() {
 	sceneManager = new SceneManager();
 	listener = sceneManager;
 	shaderManager = new ShaderManager();
-	if(sceneManager && shaderManager) {
-		modelManager = new ModelManager();
+	modelManager = new ModelManager();
+	textureLoader = new TextureLoader();
+	if(sceneManager && shaderManager && modelManager && textureLoader) {
 		sceneManager->setModelManager(modelManager);
 	} else {
 		return false;
@@ -139,6 +143,10 @@ SceneManager* Engine::getSceneManager() const {
 
 ShaderManager* Engine::getShaderManager() const {
 	return shaderManager;
+}
+
+TextureLoader * Engine::getTextureLoader() const {
+	return textureLoader;
 }
 
 void Engine::enterFullscreen() {
