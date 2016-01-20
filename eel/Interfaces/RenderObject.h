@@ -2,6 +2,7 @@
 #define _INTERFACES_RENDEROBJECT_H
 
 #include <vector>
+#include <map>
 #include <iostream>
 #include "../Libs/GLWrapper.h"
 #include "../Structures/VertexFormat.h"
@@ -15,9 +16,11 @@ public:
 	virtual void update() = 0;
 	virtual void destroy() = 0;
 	virtual void setProgram(GLuint shaderName) = 0;
+	virtual void setTexture(const std::string& textureName, GLuint texture) = 0;
 
 	virtual GLuint getVao() const = 0;
 	virtual const std::vector<GLuint>& getVbos() const = 0;
+	virtual const GLuint getTexture(const std::string& textureName) const = 0;
 };
 
 inline RenderObject::~RenderObject() {}

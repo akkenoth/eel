@@ -10,6 +10,7 @@ protected:
 	GLuint vao;
 	GLuint program;
 	std::vector<GLuint> vbos;
+	std::map<std::string, GLuint> textures;
 public:
 	RenderModel();
 	virtual ~RenderModel();
@@ -19,9 +20,11 @@ public:
 	virtual void update() override;
 	virtual void destroy() override;
 	virtual void setProgram(GLuint program) override;
+	virtual void setTexture(const std::string& textureName, GLuint texture) override;
 
 	virtual GLuint getVao() const override;
 	virtual const std::vector<GLuint>& getVbos() const override;
+	virtual const GLuint getTexture(const std::string& textureName) const override;
 };
 
 #endif // !_MODELS_RENDERMODEL_H
