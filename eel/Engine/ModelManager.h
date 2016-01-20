@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _ENGINE_MODELMANAGER_H
+#define _ENGINE_MODELMANAGER_H
 
 #include "ShaderManager.h"
 #include "../Models/Triangle.h"
@@ -22,3 +23,4 @@ public:
 	void setModel(const std::string& modelName, RenderObject* modelObject);
 };
 
+#endif // !_ENGINE_MODELMANAGER_H

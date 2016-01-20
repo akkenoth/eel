@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _MODELS_RENDERMODEL_H
+#define _MODELS_RENDERMODEL_H
 
 #include "../Interfaces/RenderObject.h"
 
@@ -23,3 +24,4 @@ public:
 	virtual const std::vector<GLuint>& getVbos() const override;
 };
 
+#endif // !_MODELS_RENDERMODEL_H

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _MODELS_CUBE_H
+#define _MODELS_CUBE_H
 
 #include <time.h>
 #include "RenderModel.h"
@@ -16,3 +17,5 @@ public:
 	virtual void update() override final;
 	virtual void draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix) override final;
 };
+
+#endif // !_MODELS_CUBE_H

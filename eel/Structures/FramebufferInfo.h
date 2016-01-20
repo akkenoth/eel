@@ -1,7 +1,7 @@
-#pragma once
+#ifndef _STRUCTURES_FRAMEBUFFERINFO_H
+#define _STRUCTURES_FRAMEBUFFERINFO_H
 
-#include "../Libs/glew/glew.h"
-#include "../Libs/freeglut/freeglut.h"
+#include "../Libs/GLWrapper.h"
 
 struct FramebufferInfo {
 	GLuint flags;
@@ -40,3 +40,5 @@ struct FramebufferInfo {
 		msaa = f.msaa;
 	}
 };
+
+#endif // !_STRUCTURES_FRAMEBUFFERINFO_H

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _STRUCTURES_WINDOWINFO_H
+#define _STRUCTURES_WINDOWINFO_H
 
 #include <string>
 
@@ -43,3 +44,5 @@ struct WindowInfo {
 		isReshapable = w.isReshapable;
 	}
 };
+
+#endif // !_STRUCTURES_WINDOWINFO_H

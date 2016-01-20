@@ -1,9 +1,9 @@
-#pragma once
+#ifndef _INTERFACES_RENDEROBJECT_H
+#define _INTERFACES_RENDEROBJECT_H
 
 #include <vector>
 #include <iostream>
-#include "../Libs/glew/glew.h"
-#include "../Libs/freeglut/freeglut.h"
+#include "../Libs/GLWrapper.h"
 #include "../Structures/VertexFormat.h"
 
 class RenderObject {
@@ -21,3 +21,5 @@ public:
 };
 
 inline RenderObject::~RenderObject() {}
+
+#endif // !_INTERFACES_RENDEROBJECT_H

@@ -70,7 +70,7 @@ void Cube::create() {
 
 	this->vao = vao;
 	this->vbos.push_back(vbo);
-	rotationSpeed = vec3(90.0, 90.0, 90.0);
+	rotationSpeed = vec3(0.0, 90.0, 0.0);
 	rotation = vec3(0.0, 0.0, 0.0);
 }
 

@@ -1,13 +1,11 @@
-#pragma once
+#ifndef _ENGINE_ENGINE_H
+#define _ENGINE_ENGINE_H
 
-#include <iostream>
-#include "../Libs/glew/glew.h"
-#include "../Libs/freeglut/freeglut.h"
+#include "DebugOutput.h" // This includes GL and iostream
 #include "../Structures/ContextInfo.h"
 #include "../Structures/FramebufferInfo.h"
 #include "../Structures/WindowInfo.h"
 #include "../Interfaces/GLUTListener.h"
-#include "DebugOutput.h"
 #include "ModelManager.h"
 #include "SceneManager.h"
 #include "ShaderManager.h"
@@ -43,3 +41,5 @@ public:
 	void enterFullscreen();
 	void exitFullscreen();
 };
+
+#endif // !_ENGINE_ENGINE_H

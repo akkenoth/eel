@@ -1,6 +1,7 @@
-#pragma once
+#ifndef _STRUCTURES_VERTEXFORMAT_H
+#define _STRUCTURES_VERTEXFORMAT_H
 
-#include "../Libs/glm/glm.hpp"
+#include "../Libs/GLMWrapper.h"
 
 struct VertexFormat {
 	// X, Y, Z
@@ -13,3 +14,5 @@ struct VertexFormat {
 		color = col;
 	}
 };
+
+#endif // !_STRUCTURES_VERTEXFORMAT_H

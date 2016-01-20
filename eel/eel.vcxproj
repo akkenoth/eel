@@ -159,6 +159,8 @@
     <ClInclude Include="Engine\DebugOutput.h" />
     <ClInclude Include="Engine\Engine.h" />
     <ClInclude Include="Engine\ModelManager.h" />
+    <ClInclude Include="Libs\GLWrapper.h" />
+    <ClInclude Include="Libs\GLMWrapper.h" />
     <ClInclude Include="Models\Cube.h" />
     <ClInclude Include="Models\Tetragon.h" />
     <ClInclude Include="Interfaces\GLUTListener.h" />

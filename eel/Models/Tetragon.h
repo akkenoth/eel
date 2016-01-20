@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _MODELS_TETRAGON_H
+#define _MODELS_TETRAGON_H
 
 #include "RenderModel.h"
 
@@ -11,3 +12,5 @@ public:
 	virtual void update() override final;
 	virtual void draw() override final;
 };
+
+#endif // !_MODELS_TETRAGON_H

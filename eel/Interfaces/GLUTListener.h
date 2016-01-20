@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _INTERFACES_GLUTLISTENER_H
+#define _INTERFACES_GLUTLISTENER_H
 
 class GLUTListener {
 public:
@@ -11,3 +12,5 @@ public:
 };
 
 inline GLUTListener::~GLUTListener() {}
+
+#endif // !_INTERFACES_GLUTLISTENER_H

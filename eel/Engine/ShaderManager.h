@@ -1,12 +1,12 @@
-#pragma once
+#ifndef _ENGINE_SHADERMANAGER_H
+#define _ENGINE_SHADERMANAGER_H
 
 #include <iostream>
 #include <fstream>
 #include <vector>
 #include <map>
 
-#include "../Libs/glew/glew.h"
-#include "../Libs/freeglut/freeglut.h"
+#include "../Libs/GLWrapper.h"
 
 class ShaderManager {
 private:
@@ -21,3 +21,5 @@ public:
 	static const GLuint getProgram(const std::string&);
 	void deleteProgram(const std::string& shaderName);
 };
+
+#endif // !_ENGINE_SHADERMANAGER_H

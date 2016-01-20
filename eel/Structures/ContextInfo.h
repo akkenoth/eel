@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _STRUCTURES_CONTEXTINFO_H
+#define _STRUCTURES_CONTEXTINFO_H
 
 struct ContextInfo {
 	int majorVersion;
@@ -29,3 +30,5 @@ struct ContextInfo {
 		core = c.core;
 	}
 };
+
+#endif // !_STRUCTURES_CONTEXTINFO_H
