@@ -6,7 +6,6 @@
 
 class SceneManager : public GLUTListener {
 private:
-	ShaderManager* shaderManager;
 	ModelManager* modelManager;
 	glm::mat4 projectionMatrix;
 	glm::mat4 viewMatrix;
@@ -20,6 +19,6 @@ public:
 	virtual void notifyFrameEnd() override;
 	virtual void notifyReshape(int width, int height, int previousWidth, int previousHeight) override;
 
-	ModelManager* getModelManager();
+	void setModelManager(ModelManager*& manager);
 };
 

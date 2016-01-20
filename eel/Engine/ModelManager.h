@@ -1,8 +1,8 @@
 #pragma once
 
 #include "ShaderManager.h"
-#include "Models/Triangle.h"
-#include "Models/Tetragon.h"
+#include "../Models/Triangle.h"
+#include "../Models/Tetragon.h"
 
 class ModelManager {
 private:

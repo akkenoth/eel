@@ -7,16 +7,9 @@ SceneManager::SceneManager() {
 		0.0f, 1.0f, 0.0f, 0.0f,
 		0.0f, 0.0f, -1.0f, 0.0f,
 		0.0f, 0.0f, 10.0f, 1.0f);
-
-	shaderManager = new ShaderManager();
-	shaderManager->createProgram("simpleColorShader", "Shaders\\VertexShader.glsl", "Shaders\\FragmentShader.glsl");
-	modelManager = new ModelManager();
 }
 
-SceneManager::~SceneManager() {
-	delete shaderManager;
-	delete modelManager;
-}
+SceneManager::~SceneManager() {}
 
 void SceneManager::notifyFrameBegin() {
 	modelManager->update();
@@ -24,7 +17,7 @@ void SceneManager::notifyFrameBegin() {
 
 void SceneManager::notifyFrameDisplay() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glClearColor(0.0, 0.0, 0.0, 1.0);
+	glClearColor(0.0f, 0.2f, 0.3f, 1.0f);
 
 	modelManager->draw();
 	modelManager->draw(projectionMatrix, viewMatrix);
@@ -48,6 +41,6 @@ void SceneManager::notifyReshape(int width, int height, int previousWidth, int p
 	projectionMatrix[3][2] = 2.0f * nearClip * farClip / (nearClip - farClip);
 }
 
-ModelManager* SceneManager::getModelManager() {
-	return modelManager;
+void SceneManager::setModelManager(ModelManager *& manager) {
+	modelManager = manager;
 }
