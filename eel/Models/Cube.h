@@ -1,9 +1,9 @@
 #pragma once
 
 #include <time.h>
-#include "../RenderModel.h"
+#include "RenderModel.h"
 
-class Cube : RenderModel {
+class Cube : public RenderModel {
 private:
 	glm::vec3 rotation;
 	glm::vec3 rotationSpeed;
