@@ -8,6 +8,7 @@ class Cube : public RenderModel {
 private:
 	glm::vec3 rotation;
 	glm::vec3 rotationSpeed;
+	glm::vec3 rotationSin;
 	time_t timer;
 public:
 	Cube();
