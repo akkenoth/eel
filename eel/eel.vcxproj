@@ -144,33 +144,33 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Classes\DebugOutput.cpp" />
-    <ClCompile Include="Classes\Initializer.cpp" />
-    <ClCompile Include="Classes\ModelManager.cpp" />
-    <ClCompile Include="Classes\Models\Cube.cpp" />
-    <ClCompile Include="Classes\Models\Tetragon.cpp" />
+    <ClCompile Include="Engine\DebugOutput.cpp" />
+    <ClCompile Include="Engine\Engine.cpp" />
+    <ClCompile Include="Engine\ModelManager.cpp" />
+    <ClCompile Include="Models\Cube.cpp" />
+    <ClCompile Include="Models\Tetragon.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Classes\ShaderManager.cpp" />
-    <ClCompile Include="Classes\SceneManager.cpp" />
-    <ClCompile Include="Classes\RenderModel.cpp" />
-    <ClCompile Include="Classes\Models\Triangle.cpp" />
+    <ClCompile Include="Engine\ShaderManager.cpp" />
+    <ClCompile Include="Engine\SceneManager.cpp" />
+    <ClCompile Include="Models\RenderModel.cpp" />
+    <ClCompile Include="Models\Triangle.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Classes\DebugOutput.h" />
-    <ClInclude Include="Classes\Initializer.h" />
-    <ClInclude Include="Classes\ModelManager.h" />
-    <ClInclude Include="Classes\Models\Cube.h" />
-    <ClInclude Include="Classes\Models\Tetragon.h" />
+    <ClInclude Include="Engine\DebugOutput.h" />
+    <ClInclude Include="Engine\Engine.h" />
+    <ClInclude Include="Engine\ModelManager.h" />
+    <ClInclude Include="Models\Cube.h" />
+    <ClInclude Include="Models\Tetragon.h" />
     <ClInclude Include="Interfaces\GLUTListener.h" />
-    <ClInclude Include="Classes\SceneManager.h" />
+    <ClInclude Include="Engine\SceneManager.h" />
     <ClInclude Include="Interfaces\RenderObject.h" />
-    <ClInclude Include="Classes\RenderModel.h" />
+    <ClInclude Include="Models\RenderModel.h" />
     <ClInclude Include="Structures\ContextInfo.h" />
     <ClInclude Include="Structures\FramebufferInfo.h" />
     <ClInclude Include="Structures\WindowInfo.h" />
     <ClInclude Include="Structures\VertexFormat.h" />
-    <ClInclude Include="Classes\ShaderManager.h" />
-    <ClInclude Include="Classes\Models\Triangle.h" />
+    <ClInclude Include="Engine\ShaderManager.h" />
+    <ClInclude Include="Models\Triangle.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="freeglut.dll">

@@ -1,18 +1,20 @@
 #include <iostream>
 
-#include "Classes/Initializer.h"
-#include "Classes/SceneManager.h"
+#include "Engine/Engine.h"
+#include "Models/Cube.h"
 
 int main(int argc, char** argv) {
-	WindowInfo w(std::string("EEL"), 500, 500, 800, 800, true);
-	ContextInfo c(4, 3, true);
-	FramebufferInfo f(true, true, true, true);
-	Initializer::initGLUT(w, c, f, argc, argv);
+	Engine* engine = new Engine();
+	engine->init();
+	engine->getShaderManager()->createProgram("colorShader", "Shaders\\VertexShader.glsl", "Shaders\\FragmentShader.glsl");
 
-	GLUTListener* scene = new SceneManager();
-	Initializer::setListener(scene);
-	Initializer::run();
+	Cube* cube = new Cube();
+	cube->setProgram(engine->getShaderManager()->getProgram("colorShader"));
+	cube->create();
+	engine->getModelManager()->setModel("cube", cube);
 
-	delete scene;
+	engine->run();
+
+	delete engine;
 	return 0;
 }
