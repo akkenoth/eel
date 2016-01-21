@@ -35,10 +35,10 @@ void Engine::initGLEW() {
 		std::cout << "GLEW initialized\n";
 	}
 
-	if(glewIsSupported("GL_VERSION_4_3")) {
-		std::cout << "GLEW GL 4.3 supported.\n";
+	if(glewIsSupported("GL_VERSION_3_3")) {
+		std::cout << "GLEW GL 3.3 supported.\n";
 	} else {
-		std::cout << "GLEW GL 4.3 NOT supported.\n";
+		std::cout << "GLEW GL 3.3 NOT supported.\n";
 	}
 }
 
@@ -112,7 +112,7 @@ void Engine::closeCallback() {
 bool Engine::init() {
 	window = new WindowInfo(std::string("EEL"), 200, 200, 800, 800, true);
 	///TODO: make compatible with CORE.
-	context = new ContextInfo(4, 3, false /*CORE*/);
+	context = new ContextInfo(3, 3, true /*CORE*/);
 	framebuffer = new FramebufferInfo(true, true, true, true);
 
 	initGLUT();
