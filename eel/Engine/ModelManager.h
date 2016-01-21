@@ -2,8 +2,7 @@
 #define _ENGINE_MODELMANAGER_H
 
 #include "ShaderManager.h"
-#include "../Models/Triangle.h"
-#include "../Models/Tetragon.h"
+#include "../Interfaces/RenderObject.h"
 
 class ModelManager {
 private:

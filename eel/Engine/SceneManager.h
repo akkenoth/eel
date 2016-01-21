@@ -1,7 +1,6 @@
 #ifndef _ENGINE_SCENEMANAGER_H
 #define _ENGINE_SCENEMANAGER_H
 
-#include "ShaderManager.h"
 #include "ModelManager.h"
 #include "../Interfaces/GLUTListener.h"
 
