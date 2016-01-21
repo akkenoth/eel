@@ -45,7 +45,7 @@ void Cube::create() {
 		16, 17, 18, 16, 18, 19,
 		20, 21, 22, 20, 22, 23};
 
-	time(&timer);
+	//time(&timer);
 
 	GLuint vao;
 	glGenVertexArrays(1, &vao);
@@ -87,7 +87,7 @@ void Cube::draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix) 
 	// Activate, bind and transform texture
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, this->getTexture("cubeTexture"));
-	GLuint textureLocation = glGetUniformLocation(program, "texture1");
+	GLuint textureLocation = glGetUniformLocation(program, "texture0");
 	glUniform1i(textureLocation, 0);
 
 	// Apply cube rotation, view and projection transformations
