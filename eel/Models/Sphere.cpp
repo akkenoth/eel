@@ -28,6 +28,8 @@ void Sphere::create(GLfloat radius, GLuint rings, GLuint sectors) {
 			indices.push_back(i * sectors + j);
 			indices.push_back(i * sectors + j + 1);
 			indices.push_back((i + 1) * sectors + j + 1);
+			indices.push_back(i * sectors + j);
+			indices.push_back((i + 1) * sectors + j + 1);
 			indices.push_back((i + 1) * sectors + j);
 		}
 	}
@@ -71,7 +73,7 @@ void Sphere::update() {
 	rotationSin = glm::vec3(rotation.x * M_PI / 180, rotation.y * M_PI / 180, rotation.z * M_PI / 180);
 }
 
-void Sphere::draw(const glm::mat4 & projectionMatrix, const glm::mat4 & viewMatrix) {
+void Sphere::draw(const glm::mat4 & projectionMatrix, const glm::mat4& viewMatrix, const glm::mat4& worldMatrix) {
 	glUseProgram(program);
 	glBindVertexArray(vao);
 
@@ -91,12 +93,13 @@ void Sphere::draw(const glm::mat4 & projectionMatrix, const glm::mat4 & viewMatr
 	// Apply cube rotation, view and projection transformations
 	glUniform1f(glGetUniformLocation(program, "timePassed"), timePassed);
 	glUniform3f(glGetUniformLocation(program, "rotation"), rotationSin.x, rotationSin.y, rotationSin.z);
-	glUniformMatrix4fv(glGetUniformLocation(program, "viewMatrix"), 1, false, &viewMatrix[0][0]);
-	glUniformMatrix4fv(glGetUniformLocation(program, "projectionMatrix"), 1, false, &projectionMatrix[0][0]);
+	glUniformMatrix4fv(glGetUniformLocation(program, "worldMatrix"), 1, GL_FALSE, &worldMatrix[0][0]);
+	glUniformMatrix4fv(glGetUniformLocation(program, "viewMatrix"), 1, GL_FALSE, &viewMatrix[0][0]);
+	glUniformMatrix4fv(glGetUniformLocation(program, "projectionMatrix"), 1, GL_FALSE, &projectionMatrix[0][0]);
 
 	// Draw
 	glCullFace(GL_BACK);
-	glDrawElements(GL_QUADS, indicesCount, GL_UNSIGNED_INT, 0);
+	glDrawElements(GL_TRIANGLES, indicesCount, GL_UNSIGNED_INT, 0);
 	glCullFace(GL_FRONT);
-	glDrawElements(GL_QUADS, indicesCount, GL_UNSIGNED_INT, 0);
+	glDrawElements(GL_TRIANGLES, indicesCount, GL_UNSIGNED_INT, 0);
 }
