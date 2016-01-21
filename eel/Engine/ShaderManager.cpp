@@ -52,19 +52,19 @@ void ShaderManager::createProgram(const std::string& shaderName, const std::stri
 		return;
 	}
 
-	std::string vertex_shader_code = readShader(vertexShaderFilename);
-	std::string fragment_shader_code = readShader(fragmentShaderFilename);
-	GLuint vertex_shader = createShader(GL_VERTEX_SHADER, vertex_shader_code, "vertex shader");
-	GLuint fragment_shader = createShader(GL_FRAGMENT_SHADER, fragment_shader_code, "fragment shader");
+	std::string vertexShaderCode = readShader(vertexShaderFilename);
+	std::string fragmentShaderCode = readShader(fragmentShaderFilename);
+	GLuint vertexShader = createShader(GL_VERTEX_SHADER, vertexShaderCode, "vertex shader");
+	GLuint fragmentShader = createShader(GL_FRAGMENT_SHADER, fragmentShaderCode, "fragment shader");
 
 	//create the program handle, attatch the shaders and link it
 	GLuint program = glCreateProgram();
-	glAttachShader(program, vertex_shader);
-	glAttachShader(program, fragment_shader);
+	glAttachShader(program, vertexShader);
+	glAttachShader(program, fragmentShader);
 	glLinkProgram(program);
 	int result = 0;
 	glGetProgramiv(program, GL_LINK_STATUS, &result);
-	if (result  == GL_FALSE) {
+	if (result == GL_FALSE) {
 		int logLength = 0;
 		glGetProgramiv(program, GL_INFO_LOG_LENGTH, &logLength);
 		std::vector<char> log(logLength);
