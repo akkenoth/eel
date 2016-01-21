@@ -73,7 +73,7 @@ void Sphere::update() {
 	rotationSin = glm::vec3(rotation.x * M_PI / 180, rotation.y * M_PI / 180, rotation.z * M_PI / 180);
 }
 
-void Sphere::draw(const glm::mat4 & projectionMatrix, const glm::mat4& viewMatrix, const glm::mat4& worldMatrix) {
+void Sphere::draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix, const glm::mat4& worldMatrix) {
 	glUseProgram(program);
 	glBindVertexArray(vao);
 

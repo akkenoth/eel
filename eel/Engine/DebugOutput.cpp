@@ -61,7 +61,7 @@ std::string DebugOutput::getSeverityString(GLenum severity) {
 	}
 }
 
-void DebugOutput::printDebugOutput(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar* msg, const void* userParam) {
+CALLBACKTYPE DebugOutput::printDebugOutput(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar* msg, const void* userParam) {
 	std::cout << "##Debug## " << getSeverityString(severity).c_str() << ": " << getTypeString(type).c_str() << "; from: " << getSourceString(source).c_str() << "\n";
 	std::cout << "\tMessage: " << msg << "\n\n";
 }

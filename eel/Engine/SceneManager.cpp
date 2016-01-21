@@ -30,10 +30,9 @@ void SceneManager::notifyFrameEnd() {}
 void SceneManager::notifyReshape(int width, int height, int previousWidth, int previousHeight) {
 	///TODO: make configurable (?)
 	GLfloat aspectRatio = (float)(width) / (float)(height);
-	GLfloat verticalFOV = 60.0f * M_PI / 180;
+	GLfloat verticalFOV = 60.0f * (float)(M_PI) / 180.0f;
 	GLfloat nearClip = 0.1f;
 	GLfloat farClip = 200.0f;
-
 	//glm::lookAt?
 	projectionMatrix = glm::perspective(verticalFOV, aspectRatio, nearClip, farClip);
 }
