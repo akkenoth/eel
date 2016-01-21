@@ -1,4 +1,4 @@
-#version 430 core
+#version 330 core
 
 layout(location = 0) in vec3 in_position;
 layout(location = 1) in vec4 in_color;
@@ -16,11 +16,11 @@ void main(void) {
 		0.0, cos(rotation.x), sin(rotation.x), 0.0,
 		0.0, -sin(rotation.x), cos(rotation.x), 0.0,
 		0.0, 0.0, 0.0, 1.0);
-    mat4 rotateY = mat4(cos(rotation.y), 0.0, -sin(rotation.y), 0.0,
+	mat4 rotateY = mat4(cos(rotation.y), 0.0, -sin(rotation.y), 0.0,
 		0.0, 1.0, 0.0, 0.0,
 		sin(rotation.y), 0.0, cos(rotation.y), 0.0,
 		0.0, 0.0, 0.0, 1.0);
-    mat4 rotateZ = mat4(cos(rotation.z), -sin(rotation.z), 0.0, 0.0,
+	mat4 rotateZ = mat4(cos(rotation.z), -sin(rotation.z), 0.0, 0.0,
 		sin(rotation.z), cos(rotation.z), 0.0, 0.0,
 		0.0, 0.0, 1.0, 0.0,
 		0.0, 0.0, 0.0, 1.0);		

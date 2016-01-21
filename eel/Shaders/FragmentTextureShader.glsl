@@ -1,4 +1,4 @@
-#version 430 core
+#version 330 core
 
 layout(location = 0) out vec4 out_color; // To framebuffer, color location
 
@@ -15,10 +15,7 @@ void main(void) {
 
 	vec4 color1 = texture(texture1, vec2(textureCoords.x, textureCoords.y - timeOffset));
 	vec4 color1alpha = texture(texture1alpha, vec2(textureCoords.x, textureCoords.y - timeOffset));
-	/*
-	vec4 color1final = vec4(color1.r, color1.g, color1.b, color1alpha.r);
-	color1.a = color1alpha.r;
-	*/
+
 	// Here be dragons!
 	out_color = mix(color0, color1, color1alpha.r);
 }
