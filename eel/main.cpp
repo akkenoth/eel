@@ -2,6 +2,7 @@
 
 #include "Engine/Engine.h"
 #include "Models/Cube.h"
+#include "Libs/soil/SOIL.h"
 
 int main(int argc, char** argv) {
 	Engine* engine = new Engine();
@@ -20,11 +21,10 @@ int main(int argc, char** argv) {
 	cube->setProgram(program);
 	cube->create();
 
-	GLuint texture = engine->getTextureLoader()->loadTexture("Resources\\Textures\\test512.bmp", 512, 512);
+	GLuint texture = SOIL_load_OGL_texture("Resources\\Textures\\test512.bmp", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS);
 	if(texture == 0) {
 		std::cout << "Texture loading failed\n";
 		return 3;
-
 	}
 
 	cube->setTexture("cubeTexture", texture);
