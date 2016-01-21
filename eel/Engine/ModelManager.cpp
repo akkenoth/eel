@@ -20,9 +20,9 @@ void ModelManager::draw() {
 	}
 }
 
-void ModelManager::draw(const glm::mat4 & projectionMatrix, const glm::mat4 & viewMatrix) {
+void ModelManager::draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix, const glm::mat4& worldMatrix) {
 	for(auto model : modelList) {
-		model.second->draw(projectionMatrix, viewMatrix);
+		model.second->draw(projectionMatrix, viewMatrix, worldMatrix);
 	}
 }
 

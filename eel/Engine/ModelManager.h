@@ -13,7 +13,7 @@ public:
 	~ModelManager();
 
 	void draw();
-	void draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix);
+	void draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix, const glm::mat4& worldMatrix);
 	void update();
 	void deleteModel(const std::string& modelName);
 	void deleteNDCModel(const std::string& modelName);
