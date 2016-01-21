@@ -163,7 +163,6 @@
     <ClInclude Include="Engine\ModelManager.h" />
     <ClInclude Include="Engine\TextureLoader.h" />
     <ClInclude Include="Libs\GLWrapper.h" />
-    <ClInclude Include="Libs\GLMWrapper.h" />
     <ClInclude Include="Libs\glewWrapper.h" />
     <ClInclude Include="Libs\glutWrapper.h" />
     <ClInclude Include="Models\Cube.h" />

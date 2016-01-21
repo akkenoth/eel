@@ -125,9 +125,6 @@
     <ClInclude Include="Libs\glutWrapper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Libs\GLMWrapper.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Structures\BMPHeader.h">
       <Filter>Header Files</Filter>
     </ClInclude>

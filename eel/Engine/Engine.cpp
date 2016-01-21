@@ -103,6 +103,7 @@ void Engine::reshapeCallback(int width, int height) {
 	}
 	window->width = width;
 	window->height = height;
+	glViewport(0, 0, width, height);
 }
 
 void Engine::closeCallback() {
