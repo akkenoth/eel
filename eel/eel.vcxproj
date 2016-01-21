@@ -149,6 +149,7 @@
     <ClCompile Include="Engine\ModelManager.cpp" />
     <ClCompile Include="Engine\TextureLoader.cpp" />
     <ClCompile Include="Models\Cube.cpp" />
+    <ClCompile Include="Models\Sphere.cpp" />
     <ClCompile Include="Models\Tetragon.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Engine\ShaderManager.cpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="Libs\glewWrapper.h" />
     <ClInclude Include="Libs\glutWrapper.h" />
     <ClInclude Include="Models\Cube.h" />
+    <ClInclude Include="Models\Sphere.h" />
     <ClInclude Include="Models\Tetragon.h" />
     <ClInclude Include="Interfaces\GLUTListener.h" />
     <ClInclude Include="Engine\SceneManager.h" />
