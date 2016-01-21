@@ -1,7 +1,7 @@
 #ifndef _STRUCTURES_VERTEXFORMAT_H
 #define _STRUCTURES_VERTEXFORMAT_H
 
-#include "../Libs/glmWrapper.h"
+#include "../Libs/glm/glm.hpp"
 
 struct VertexFormat {
 	// X, Y, Z
