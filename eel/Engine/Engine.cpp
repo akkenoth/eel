@@ -110,8 +110,9 @@ void Engine::closeCallback() {
 }
 
 bool Engine::init() {
-	window = new WindowInfo(std::string("EEL"), 500, 500, 800, 800, true);
-	context = new ContextInfo(4, 3, true);
+	window = new WindowInfo(std::string("EEL"), 200, 200, 800, 800, true);
+	///TODO: make compatible with CORE.
+	context = new ContextInfo(4, 3, false /*CORE*/);
 	framebuffer = new FramebufferInfo(true, true, true, true);
 
 	initGLUT();
