@@ -16,7 +16,7 @@ public:
 
 	void create();
 	virtual void update() override final;
-	virtual void draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix) override final;
+	virtual void draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix, const glm::mat4& worldMatrix) override final;
 };
 
 #endif // !_MODELS_CUBE_H

@@ -80,7 +80,7 @@ void Cube::update() {
 	rotation = 0.01f * rotationSpeed + rotation;
 	rotationSin = glm::vec3(rotation.x * M_PI / 180, rotation.y * M_PI / 180, rotation.z * M_PI / 180);}
 
-void Cube::draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix) {
+void Cube::draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix, const glm::mat4& worldMatrix) {
 	glUseProgram(program);
 	glBindVertexArray(vao);
 
@@ -93,6 +93,7 @@ void Cube::draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix) 
 	// Apply cube rotation, view and projection transformations
 	glUniform3f(glGetUniformLocation(program, "rotation"), rotationSin.x, rotationSin.y, rotationSin.z);
 	glUniformMatrix4fv(glGetUniformLocation(program, "viewMatrix"), 1, false, &viewMatrix[0][0]);
+	glUniformMatrix4fv(glGetUniformLocation(program, "worldMatrix"), 1, false, &worldMatrix[0][0]);
 	glUniformMatrix4fv(glGetUniformLocation(program, "projectionMatrix"), 1, false, &projectionMatrix[0][0]);
 
 	// Draw

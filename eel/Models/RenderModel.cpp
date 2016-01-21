@@ -8,7 +8,7 @@ RenderModel::~RenderModel() {
 
 void RenderModel::draw() {}
 
-void RenderModel::draw(const glm::mat4 & projectionMatrix, const glm::mat4 & viewMatrix) {}
+void RenderModel::draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix, const glm::mat4& worldMatrix) {}
 
 void RenderModel::update() {}
 
