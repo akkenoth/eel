@@ -3,12 +3,14 @@
 
 #include "ModelManager.h"
 #include "../Interfaces/GLUTListener.h"
+#include "../Libs/glm/gtc/matrix_transform.hpp"
 
 class SceneManager : public GLUTListener {
 private:
 	ModelManager* modelManager;
 	glm::mat4 projectionMatrix;
 	glm::mat4 viewMatrix;
+	glm::mat4 worldMatrix;
 
 public:
 	SceneManager();
