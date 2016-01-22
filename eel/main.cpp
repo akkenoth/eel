@@ -16,7 +16,7 @@ int main(int argc, char** argv) {
 		std::cout << "Engine initialization failed\n";
 		return 1;
 	}
-	engine->getShaderManager()->createProgram("colorShader", "Shaders/VertexTextureShader.glsl", "Shaders/FragmentTextureShader.glsl");
+	engine->getShaderManager()->createProgram("colorShader", "Shaders/VertexShader.glsl", "Shaders/FragmentShader.glsl");
 	
 	GLuint program = engine->getShaderManager()->getProgram("colorShader");
 	if(program == 0) {
