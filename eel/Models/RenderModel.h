@@ -22,6 +22,7 @@ public:
 	virtual void draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix, const glm::mat4& worldMatrix) override;
 	virtual void update() override;
 	virtual void destroy() override;
+	virtual void setAttribPointers() override;
 	virtual void setProgram(GLuint program) override;
 	virtual void setTexture(const std::string& textureName, GLuint texture) override;
 

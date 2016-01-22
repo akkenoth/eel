@@ -15,6 +15,7 @@ public:
 	virtual void draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix, const glm::mat4& worldMatrix) = 0;
 	virtual void update() = 0;
 	virtual void destroy() = 0;
+	virtual void setAttribPointers() = 0;
 	virtual void setProgram(GLuint shaderName) = 0;
 	virtual void setTexture(const std::string& textureName, GLuint texture) = 0;
 

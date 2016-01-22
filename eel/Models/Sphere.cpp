@@ -46,15 +46,9 @@ void Sphere::create(GLfloat radius, GLuint rings, GLuint sectors) {
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(GLuint), &indices[0], GL_STATIC_DRAW);
 
-	// Vertices
-	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(VertexFormat), (void*)(offsetof(VertexFormat, VertexFormat::position)));
-	// Texture
-	glEnableVertexAttribArray(1);
-	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(VertexFormat), (void*)(offsetof(VertexFormat, VertexFormat::texture)));
+	setAttribPointers();
 
 	// Finish
-	glBindVertexArray(0);
 	this->vao = vao;
 	this->vbos.push_back(vbo);
 	this->vbos.push_back(ibo);
@@ -86,16 +80,30 @@ void Sphere::draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix
 	glBindTexture(GL_TEXTURE_2D, this->getTexture("sphereTexture1"));
 	glUniform1i(glGetUniformLocation(program, "texture1"), 1);
 
-	glActiveTexture(GL_TEXTURE2);
-	glBindTexture(GL_TEXTURE_2D, this->getTexture("sphereTexture1Alpha"));
-	glUniform1i(glGetUniformLocation(program, "texture1alpha"), 2);
+	// glActiveTexture(GL_TEXTURE2);
+	// glBindTexture(GL_TEXTURE_2D, this->getTexture("sphereTexture1Alpha"));
+	// glUniform1i(glGetUniformLocation(program, "texture1alpha"), 2);
 
 	// Apply cube rotation, view and projection transformations
-	glUniform1f(glGetUniformLocation(program, "timePassed"), timePassed);
-	glUniform3f(glGetUniformLocation(program, "rotation"), rotationSin.x, rotationSin.y, rotationSin.z);
 	glUniformMatrix4fv(glGetUniformLocation(program, "worldMatrix"), 1, GL_FALSE, &worldMatrix[0][0]);
 	glUniformMatrix4fv(glGetUniformLocation(program, "viewMatrix"), 1, GL_FALSE, &viewMatrix[0][0]);
 	glUniformMatrix4fv(glGetUniformLocation(program, "projectionMatrix"), 1, GL_FALSE, &projectionMatrix[0][0]);
+	glUniform3f(glGetUniformLocation(program, "rotation"), rotationSin.x, rotationSin.y, rotationSin.z);
+	glUniform1f(glGetUniformLocation(program, "timePassed"), timePassed);
+	glUniform3f(glGetUniformLocation(program, "eyePosition"), 0.0f, 0.0f, -2.5f);
+
+	glUniform3f(glGetUniformLocation(program, "light0Position"), 0.0f, 10.0f, 0.0f);
+	glUniform3f(glGetUniformLocation(program, "light0Color"), 1.0f, 1.0f, 1.0f);
+	glUniform3f(glGetUniformLocation(program, "light1Position"), 3.0f, 0.0f, 0.0f);
+	glUniform3f(glGetUniformLocation(program, "light1Color"), 0.0f, 0.0f, 0.0f);
+
+	glUniform1f(glGetUniformLocation(program, "materialShininess"), 0.3f);
+	glUniform1f(glGetUniformLocation(program, "materialDiffusive"), 0.2f);
+	glUniform1f(glGetUniformLocation(program, "materialSpecular"), 0.35f);
+	glUniform1f(glGetUniformLocation(program, "attenuationConstant"), 1.0f);
+	glUniform1f(glGetUniformLocation(program, "attenuationLinear"), 0.0f);
+	glUniform1f(glGetUniformLocation(program, "attenuationQuadratic"), 0.0f);
+	// glUniform1f(glGetUniformLocation(program, ""), );
 
 	// Draw
 	glCullFace(GL_BACK);
