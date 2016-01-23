@@ -6,8 +6,10 @@ SceneManager::SceneManager() {
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	// Camera position
-	viewMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -2.5f));
-	// World position (?)
+	glm::vec3 cameraPosition(0.0f, 0.0f, 3.0f);
+	viewMatrix = glm::lookAt(cameraPosition, glm::vec3(0,0,0), glm::vec3(0,1,0));
+	//viewMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -2.5f));
+	// World position, identity matrix
 	worldMatrix = glm::scale(glm::mat4(1.0f), glm::vec3(1.0f));
 }
 
