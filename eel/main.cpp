@@ -28,7 +28,7 @@ int main(int argc, char** argv) {
 	sphere->setProgram(program);
 	sphere->create(1.0, 24, 48);
 	sphere->setTexture("sphereTexture0", engine->getTextureLoader()->loadTexture("Resources/Textures/sphere1.bmp", 256, 256));
-	sphere->setTexture("sphereTexture1", engine->getTextureLoader()->loadTexture("Resources/Textures/sphere2.png", 256, 256));
+	sphere->setTexture("sphereTexture1", engine->getTextureLoader()->loadTexture("Resources/Textures/sphere_dots.png", 256, 256));
 	engine->getModelManager()->setModel("sphere", sphere);
 
 	engine->run();
