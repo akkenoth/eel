@@ -92,8 +92,8 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>Libs\freeglut;Libs\glew;Libs\soil</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SOIL.lib;opengl32.lib;freeglut.lib;glew32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>Libs\freeglut;Libs\glew;Libs\soil;Libs\libpng;Libs\zlib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SOIL.lib;opengl32.lib;freeglut.lib;glew32.lib;libpng16.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -186,7 +186,9 @@
     </None>
     <None Include="glew32.dll" />
     <None Include="Shaders\FragmentColorShader.glsl" />
+    <None Include="Shaders\FragmentShader.glsl" />
     <None Include="Shaders\VertexColorShader.glsl" />
+    <None Include="Shaders\VertexShader.glsl" />
     <None Include="Shaders\VertexTextureShader.glsl" />
     <None Include="Shaders\FragmentTextureShader.glsl" />
   </ItemGroup>

@@ -147,5 +147,7 @@
       <Filter>Shaders</Filter>
     </None>
     <None Include="Shaders\FragmentTextureShader.glsl" />
+    <None Include="Shaders\VertexShader.glsl" />
+    <None Include="Shaders\FragmentShader.glsl" />
   </ItemGroup>
 </Project>
