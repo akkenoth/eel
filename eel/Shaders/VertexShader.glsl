@@ -20,10 +20,6 @@ void main(void) {
 	textureCoords = in_texture;
 	color = in_color;
 
-	// Magic, snort-snort
-	worldPosition = mat3(worldMatrix) * in_position;
-	worldNormal = normalize(mat3(worldMatrix) * in_normal);
-
 	mat4 rotateX = mat4(1.0, 0.0, 0.0, 0.0,
 		0.0, cos(rotation.x), sin(rotation.x), 0.0,
 		0.0, -sin(rotation.x), cos(rotation.x), 0.0,
@@ -36,6 +32,11 @@ void main(void) {
 		sin(rotation.z), cos(rotation.z), 0.0, 0.0,
 		0.0, 0.0, 1.0, 0.0,
 		0.0, 0.0, 0.0, 1.0);
-	gl_Position = projectionMatrix * viewMatrix * worldMatrix * rotateX * rotateY * rotateZ * vec4(in_position, 1.0);
-	// gl_Position = projectionMatrix * viewMatrix * worldMatrix * vec4(in_position, 1.0);
+	mat4 rotationMatrix = rotateX * rotateY * rotateZ;
+	
+	// For fragment shader
+	worldPosition = mat3(worldMatrix * rotationMatrix) * in_position;
+	worldNormal = normalize(mat3(worldMatrix * rotationMatrix) * in_normal);
+
+	gl_Position = projectionMatrix * viewMatrix * worldMatrix * rotationMatrix * vec4(in_position, 1.0);
 }
