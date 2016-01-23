@@ -54,7 +54,7 @@ void Sphere::create(GLfloat radius, GLuint rings, GLuint sectors) {
 	this->vbos.push_back(ibo);
 	indicesCount = indices.size();
 
-	rotationSpeed = glm::vec3(0.0, 0.0, 0.0);
+	rotationSpeed = glm::vec3(0.0, 30.0, 0.0);
 	baseRotation = glm::vec3(30.0, 0.0, 0.0);
 	rotation = glm::vec3(0.0, 0.0, 0.0);
 	spawnTime = std::chrono::steady_clock::now();
@@ -90,16 +90,17 @@ void Sphere::draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix
 	glUniformMatrix4fv(glGetUniformLocation(program, "projectionMatrix"), 1, GL_FALSE, &projectionMatrix[0][0]);
 	glUniform3f(glGetUniformLocation(program, "rotation"), rotationSin.x, rotationSin.y, rotationSin.z);
 	glUniform1f(glGetUniformLocation(program, "timePassed"), timePassed);
-	glUniform3f(glGetUniformLocation(program, "eyePosition"), 0.0f, 0.0f, -2.5f);
+	glUniform3f(glGetUniformLocation(program, "eyePosition"), 0.0f, 0.0f, 3.0f);
 
-	glUniform3f(glGetUniformLocation(program, "light0Position"), 0.0f, 10.0f, 0.0f);
-	glUniform3f(glGetUniformLocation(program, "light0Color"), 1.0f, 1.0f, 1.0f);
+	glUniform3f(glGetUniformLocation(program, "light0Position"), 0.0f, 5.0f, 0.0f);
+	glUniform3f(glGetUniformLocation(program, "light0Color"), 5.0f, 5.0f, 5.0f);
 	glUniform3f(glGetUniformLocation(program, "light1Position"), 3.0f, 0.0f, 0.0f);
-	glUniform3f(glGetUniformLocation(program, "light1Color"), 0.0f, 0.0f, 0.0f);
+	glUniform3f(glGetUniformLocation(program, "light1Color"), 4.0f, 4.0f, 4.0f);
 
-	glUniform1f(glGetUniformLocation(program, "materialShininess"), 0.3f);
-	glUniform1f(glGetUniformLocation(program, "materialDiffusive"), 0.2f);
-	glUniform1f(glGetUniformLocation(program, "materialSpecular"), 0.35f);
+	glUniform1f(glGetUniformLocation(program, "materialAmbient"), 0.02f);
+	glUniform1f(glGetUniformLocation(program, "materialDiffusive"), 0.3f);
+	glUniform1f(glGetUniformLocation(program, "materialSpecular"), 0.9f);
+	glUniform1f(glGetUniformLocation(program, "materialShininess"), 1.9f);
 	glUniform1f(glGetUniformLocation(program, "attenuationConstant"), 1.0f);
 	glUniform1f(glGetUniformLocation(program, "attenuationLinear"), 0.0f);
 	glUniform1f(glGetUniformLocation(program, "attenuationQuadratic"), 0.0f);
