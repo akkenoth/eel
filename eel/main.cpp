@@ -25,11 +25,8 @@ int main(int argc, char** argv) {
 	}
 	engine->getSceneManager()->setProgram(program);
 
-	//"attenuationConstant", 1.0f;
-	//"attenuationLinear", 0.3f;
-	//"attenuationQuadratic", 0.1f;
-	engine->getSceneManager()->addLight(0, glm::vec3(0.0f, 5.0f, 0.0f));
-	engine->getSceneManager()->addLight(0, glm::vec3(3.0f, -5.0f, 0.0f), glm::vec3(4.0f, 1.0f, 1.0f));
+	engine->getSceneManager()->addLight(0, glm::vec3(0.0f, 5.0f, 0.0f), glm::vec3(1.0), 1.0f, 0.03f, 0.01f);
+	engine->getSceneManager()->addLight(0, glm::vec3(3.0f, -5.0f, 0.0f), glm::vec3(4.0f, 1.0f, 1.0f), 1.0f, 0.03f, 0.005f);
 
 	Sphere* sphere = new Sphere();
 	sphere->create(1.0, 24, 48);
