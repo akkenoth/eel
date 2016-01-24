@@ -9,8 +9,8 @@ public:
 	~Tetragon();
 
 	void create();
-	virtual void update() override final;
-	virtual void draw() override final;
+	virtual void update(const float totalTimePassed = 0.0f, const float deltaTime = 0.0f) override final;
+	virtual void draw(const GLuint program) override final;
 };
 
 #endif // !_MODELS_TETRAGON_H

@@ -29,9 +29,9 @@ void Triangle::create() {
 	this->vbos.push_back(vbo);
 }
 
-void Triangle::update() {}
+void Triangle::update(const float totalTimePassed, const float deltaTime) {}
 
-void Triangle::draw() {
+void Triangle::draw(const GLuint program) {
 	glUseProgram(program);
 	glBindVertexArray(vao);
 	glDrawArrays(GL_TRIANGLES, 0, 3);

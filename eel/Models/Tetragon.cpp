@@ -27,9 +27,9 @@ void Tetragon::create() {
 	this->vbos.push_back(vbo);
 }
 
-void Tetragon::update() {}
+void Tetragon::update(const float totalTimePassed, const float deltaTime) {}
 
-void Tetragon::draw() {
+void Tetragon::draw(const GLuint program) {
 	glUseProgram(program);
 	glBindVertexArray(vao);
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
