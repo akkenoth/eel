@@ -5,9 +5,9 @@ layout(location = 1) in vec3 in_normal;
 layout(location = 2) in vec4 in_color;
 layout(location = 3) in vec2 in_texture;
 
-uniform mat4 projectionMatrix;
 uniform mat4 viewMatrix;
-uniform mat4 worldMatrix;
+uniform mat4 projectionMatrix;
+uniform mat4 modelPosition;
 uniform vec3 rotation;
 
 // Goes to fragment shader, preserve names!
@@ -35,8 +35,8 @@ void main(void) {
 	mat4 rotationMatrix = rotateX * rotateY * rotateZ;
 	
 	// For fragment shader
-	worldPosition = mat3(worldMatrix * rotationMatrix) * in_position;
-	worldNormal = normalize(mat3(worldMatrix * rotationMatrix) * in_normal);
+	worldPosition = mat3(modelPosition * rotationMatrix) * in_position;
+	worldNormal = normalize(mat3(modelPosition * rotationMatrix) * in_normal);
 
-	gl_Position = projectionMatrix * viewMatrix * worldMatrix * rotationMatrix * vec4(in_position, 1.0);
+	gl_Position = projectionMatrix * viewMatrix * modelPosition * rotationMatrix * vec4(in_position, 1.0);
 }
