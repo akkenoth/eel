@@ -165,6 +165,7 @@
     <ClInclude Include="Libs\GLWrapper.h" />
     <ClInclude Include="Libs\glewWrapper.h" />
     <ClInclude Include="Libs\glutWrapper.h" />
+    <ClInclude Include="Libs\libpngWrapper.h" />
     <ClInclude Include="Models\Cube.h" />
     <ClInclude Include="Models\Sphere.h" />
     <ClInclude Include="Models\Tetragon.h" />

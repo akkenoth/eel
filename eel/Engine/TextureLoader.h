@@ -6,7 +6,7 @@
 #include <string>
 #include "../Libs/glewWrapper.h"
 #include "../Structures/BMPHeader.h"
-#include "../Libs/libpng/png.h"
+#include "../Libs/libpngWrapper.h"
 
 class TextureLoader {
 private:

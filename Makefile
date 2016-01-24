@@ -1,6 +1,6 @@
 CXX=g++
 CXXFLAGS=-std=gnu++11 -Wall -Wextra -Wno-ignored-qualifiers -Wno-unused-parameter
-LFLAGS=-lglut -lGLEW -lGL
+LFLAGS=-lglut -lGLEW -lGL -lpng -lz
 
 SRC=$(wildcard eel/*/*.cpp) eel/main.cpp
 OBJECTS=$(patsubst eel/%,Obj/%,$(SRC:.cpp=.o))
