@@ -5,20 +5,14 @@
 
 class Sphere : public RenderModel {
 private:
-	std::chrono::time_point<std::chrono::steady_clock> spawnTime;
-	float timePassed;
-	glm::vec3 baseRotation;
-	glm::vec3 rotation;
-	glm::vec3 rotationSpeed;
-	glm::vec3 rotationSin;
 	unsigned int indicesCount;
 public:
 	Sphere();
 	~Sphere();
 
 	void create(GLfloat radius, GLuint rings, GLuint sectors);
-	virtual void update() override final;
-	virtual void draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix, const glm::mat4& worldMatrix) override final;
+	virtual void update(const float totalTimePassed = 0.0f, const float deltaTime = 0.0f) override final;
+	virtual void draw(const GLuint program) override final;
 };
 
 #endif // !_MODELS_SPHERE_H

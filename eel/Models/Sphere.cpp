@@ -1,6 +1,6 @@
 #include "Sphere.h"
 
-Sphere::Sphere() {}
+Sphere::Sphere() : RenderModel() {}
 
 Sphere::~Sphere() {}
 
@@ -53,58 +53,18 @@ void Sphere::create(GLfloat radius, GLuint rings, GLuint sectors) {
 	this->vbos.push_back(vbo);
 	this->vbos.push_back(ibo);
 	indicesCount = indices.size();
-
-	rotationSpeed = glm::vec3(0.0, 15.0, 0.0);
-	baseRotation = glm::vec3(30.0, 0.0, 0.0);
-	rotation = glm::vec3(0.0, 0.0, 0.0);
-	spawnTime = std::chrono::steady_clock::now();
 }
 
-void Sphere::update() {
-	std::chrono::duration<float> duration = spawnTime - std::chrono::steady_clock::now();
-	timePassed = duration.count();
-	rotation = timePassed * rotationSpeed + baseRotation;
-	rotationSin = glm::vec3(rotation.x * M_PI / 180, rotation.y * M_PI / 180, rotation.z * M_PI / 180);
+void Sphere::update(const float totalTimePassed, const float deltaTime) {
+	rotate(deltaTime);
 }
 
-void Sphere::draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix, const glm::mat4& worldMatrix) {
-	glUseProgram(program);
+void Sphere::draw(const GLuint program) {
 	glBindVertexArray(vao);
 
-	// Activate, bind and transform texture
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, this->getTexture("sphereTexture0"));
-	glUniform1i(glGetUniformLocation(program, "texture0"), 0);
-
-	glActiveTexture(GL_TEXTURE1);
-	glBindTexture(GL_TEXTURE_2D, this->getTexture("sphereTexture1"));
-	glUniform1i(glGetUniformLocation(program, "texture1"), 1);
-
-	// glActiveTexture(GL_TEXTURE2);
-	// glBindTexture(GL_TEXTURE_2D, this->getTexture("sphereTexture1Alpha"));
-	// glUniform1i(glGetUniformLocation(program, "texture1alpha"), 2);
-
-	// Apply cube rotation, view and projection transformations
-	glUniformMatrix4fv(glGetUniformLocation(program, "worldMatrix"), 1, GL_FALSE, &worldMatrix[0][0]);
-	glUniformMatrix4fv(glGetUniformLocation(program, "viewMatrix"), 1, GL_FALSE, &viewMatrix[0][0]);
-	glUniformMatrix4fv(glGetUniformLocation(program, "projectionMatrix"), 1, GL_FALSE, &projectionMatrix[0][0]);
-	glUniform3f(glGetUniformLocation(program, "rotation"), rotationSin.x, rotationSin.y, rotationSin.z);
-	glUniform1f(glGetUniformLocation(program, "timePassed"), timePassed);
-	glUniform3f(glGetUniformLocation(program, "eyePosition"), 0.0f, 0.0f, 3.0f);
-
-	glUniform3f(glGetUniformLocation(program, "light0Position"), 0.0f, 5.0f, 0.0f);
-	glUniform3f(glGetUniformLocation(program, "light0Color"), 5.0f, 5.0f, 5.0f);
-	glUniform3f(glGetUniformLocation(program, "light1Position"), 3.0f, -3.0f, 0.0f);
-	glUniform3f(glGetUniformLocation(program, "light1Color"), 14.0f, 4.0f, 4.0f);
-
-	glUniform1f(glGetUniformLocation(program, "materialAmbient"), 0.02f);
-	glUniform1f(glGetUniformLocation(program, "materialDiffusive"), 0.3f);
-	glUniform1f(glGetUniformLocation(program, "materialSpecular"), 0.9f);
-	glUniform1f(glGetUniformLocation(program, "materialShininess"), 1.9f);
-	glUniform1f(glGetUniformLocation(program, "attenuationConstant"), 1.0f);
-	glUniform1f(glGetUniformLocation(program, "attenuationLinear"), 0.3f);
-	glUniform1f(glGetUniformLocation(program, "attenuationQuadratic"), 0.1f);
-	// glUniform1f(glGetUniformLocation(program, ""), );
+	// Set model position and rotation vectors
+	setPositionUniforms(program);
+	setMaterialUniforms(program);
 
 	// Draw
 	glCullFace(GL_BACK);
