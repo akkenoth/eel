@@ -15,8 +15,8 @@ public:
 	~Cube();
 
 	void create();
-	virtual void update() override final;
-	virtual void draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix, const glm::mat4& worldMatrix) override final;
+	virtual void update(const float totalTimePassed = 0.0f, const float deltaTime = 0.0f) override final;
+	virtual void draw(const GLuint program) override final;
 };
 
 #endif // !_MODELS_CUBE_H
