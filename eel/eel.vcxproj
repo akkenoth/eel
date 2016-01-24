@@ -175,6 +175,9 @@
     <ClInclude Include="Structures\ContextInfo.h" />
     <ClInclude Include="Structures\FramebufferInfo.h" />
     <ClInclude Include="Structures\BMPHeader.h" />
+    <ClInclude Include="Structures\Camera.h" />
+    <ClInclude Include="Structures\ModelMaterial.h" />
+    <ClInclude Include="Structures\LightSource.h" />
     <ClInclude Include="Structures\WindowInfo.h" />
     <ClInclude Include="Structures\VertexFormat.h" />
     <ClInclude Include="Engine\ShaderManager.h" />
