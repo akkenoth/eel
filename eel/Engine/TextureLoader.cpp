@@ -100,6 +100,8 @@ void TextureLoader::loadPNGTexture(std::ifstream& textureFile, unsigned int& wid
 		png_destroy_read_struct(&png_ptr, &info_ptr, &end_info);
 		return;
 	}
+	width =  png_get_image_width(png_ptr, info_ptr);
+	height = png_get_image_height(png_ptr, info_ptr);
 
 	// Allocate memory for data
 	int rowbytes = png_get_rowbytes(png_ptr, info_ptr);
@@ -120,7 +122,7 @@ void TextureLoader::loadPNGTexture(std::ifstream& textureFile, unsigned int& wid
 	png_read_image(png_ptr, row_pointers);
 }
 
-GLuint TextureLoader::loadTexture(const std::string & filename, unsigned int width, unsigned int height) {
+GLuint TextureLoader::loadTexture(const std::string & filename) {
 	unsigned char* data = NULL;
 	if(filename.length() < 5) {
 		return 0;
@@ -144,6 +146,8 @@ GLuint TextureLoader::loadTexture(const std::string & filename, unsigned int wid
 		return 0;
 	}
 
+	unsigned int width = 0;
+	unsigned int height = 0;
 	if(isPNG && !isBMP) {
 		loadPNGTexture(textureFile, width, height, data);
 	} else if(isBMP && !isPNG) {

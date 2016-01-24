@@ -16,7 +16,8 @@ public:
 	TextureLoader();
 	~TextureLoader();
 
-	GLuint loadTexture(const std::string& filename, unsigned int width, unsigned int height);
+	// Todo: configurable texture repeat (wrap/etc)
+	GLuint loadTexture(const std::string& filename);
 };
 
 #endif // !_ENGINE_TEXTURELOADER_H
