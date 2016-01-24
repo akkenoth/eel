@@ -14,24 +14,21 @@ ModelManager::~ModelManager() {
 	modelListNDC.clear();
 }
 
-void ModelManager::draw() {
+void ModelManager::draw(const GLuint program) {
 	for(auto model : modelListNDC) {
 		model.second->draw();
 	}
-}
-
-void ModelManager::draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix, const glm::mat4& worldMatrix) {
 	for(auto model : modelList) {
-		model.second->draw(projectionMatrix, viewMatrix, worldMatrix);
+		model.second->draw(program);
 	}
 }
 
-void ModelManager::update() {
+void ModelManager::update(const float totalTimePassed, const float deltaTime) {
 	for(auto model : modelList) {
-		model.second->update();
+		model.second->update(totalTimePassed, deltaTime);
 	}
 	for(auto model : modelListNDC) {
-		model.second->update();
+		model.second->update(totalTimePassed, deltaTime);
 	}
 }
 

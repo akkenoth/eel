@@ -1,6 +1,7 @@
 #ifndef _ENGINE_MODELMANAGER_H
 #define _ENGINE_MODELMANAGER_H
 
+#include "../Libs/glm/gtc/matrix_transform.hpp"
 #include "ShaderManager.h"
 #include "../Interfaces/RenderObject.h"
 
@@ -12,9 +13,8 @@ public:
 	ModelManager();
 	~ModelManager();
 
-	void draw();
-	void draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix, const glm::mat4& worldMatrix);
-	void update();
+	void draw(const GLuint program);
+	void update(const float totalTimePassed, const float deltaTime);
 	void deleteModel(const std::string& modelName);
 	void deleteNDCModel(const std::string& modelName);
 	const RenderObject& getModel(const std::string& modelName);
