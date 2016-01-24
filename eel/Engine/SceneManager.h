@@ -1,17 +1,24 @@
 #ifndef _ENGINE_SCENEMANAGER_H
 #define _ENGINE_SCENEMANAGER_H
 
-#include "ModelManager.h"
+#include <chrono>
 #include "../Interfaces/GLUTListener.h"
-#include "../Libs/glm/gtc/matrix_transform.hpp"
+#include "ModelManager.h"
+#include "../Structures/LightSource.h"
+#include "../Structures/Camera.h"
+#include "../Libs/glm/gtc/type_ptr.hpp"
+
+#define MAX_LIGHTS 4
 
 class SceneManager : public GLUTListener {
 private:
+	GLuint program;
 	ModelManager* modelManager;
-	glm::mat4 projectionMatrix;
-	glm::mat4 viewMatrix;
-	glm::mat4 worldMatrix;
-
+	std::vector<LightSource*> lights;
+	Camera* camera;
+	std::chrono::time_point<std::chrono::steady_clock> spawnTime;
+	std::chrono::time_point<std::chrono::steady_clock> lastTick;
+	float totalTimePassed;
 public:
 	SceneManager();
 	~SceneManager();
@@ -21,7 +28,11 @@ public:
 	virtual void notifyFrameEnd() override;
 	virtual void notifyReshape(int width, int height, int previousWidth, int previousHeight) override;
 
+	void setProgram(GLuint program);
 	void setModelManager(ModelManager*& manager);
+	void addLight(unsigned int index, const glm::vec3& position, const glm::vec3& color = glm::vec3(1.0f), const float& attenuationConstant = 1.0f, const float& attenuationLinear = 0.0f, const float& attenuationQuadratic = 0.0f, const bool& isPointLight = true);
+	LightSource* getLight(unsigned int index);
+	void clearLight(unsigned int index);
 };
 
 #endif // !_ENGINE_SCENEMANAGER_H
