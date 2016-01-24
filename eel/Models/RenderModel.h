@@ -1,34 +1,47 @@
 #ifndef _MODELS_RENDERMODEL_H
 #define _MODELS_RENDERMODEL_H
 
-#include <chrono>
 #include "../Interfaces/RenderObject.h"
+#include "../Structures/ModelMaterial.h"
+#include "../Libs/glm/gtc/type_ptr.hpp"
 
 #ifndef M_PI
 #define M_PI 3.1415926535897932384626433832795
 #endif // !M_PI
 
+#define MAX_MATERIALS 4
+
 class RenderModel : public RenderObject {
 protected:
 	GLuint vao;
-	GLuint program;
 	std::vector<GLuint> vbos;
-	std::map<std::string, GLuint> textures;
+	std::vector<ModelMaterial*> materials;
+	glm::vec3 worldPosition;
+	glm::vec3 rotation;
+	glm::vec3 rotationSpeed;
+
+	virtual void setAttribPointers() const;
+	virtual void rotate(float deltaTime);
+	virtual void setPositionUniforms(const GLuint program) const;
+	virtual void setMaterialUniforms(const GLuint program) const;
 public:
 	RenderModel();
 	virtual ~RenderModel();
 
 	virtual void draw() override;
-	virtual void draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix, const glm::mat4& worldMatrix) override;
-	virtual void update() override;
+	virtual void draw(const GLuint program) override;
+	virtual void update(const float totalTimePassed = 0.0f, const float deltaTime = 0.0f) override;
 	virtual void destroy() override;
-	virtual void setAttribPointers() override;
-	virtual void setProgram(GLuint program) override;
-	virtual void setTexture(const std::string& textureName, GLuint texture) override;
+
+	virtual void setPosition(const glm::vec3& newPosition);
+	virtual void setRotation(const glm::vec3& newRotation);
+	virtual void setRotationSpeed(const glm::vec3& newRotationSpeed);
+
+	virtual void addMaterial(unsigned int index, const std::string& textureFileName, float ambient, float diffusive, float specular, float shininess, TextureLoader* textureLoader);
+	virtual void clearMaterial(unsigned int index);
 
 	virtual GLuint getVao() const override;
 	virtual const std::vector<GLuint>& getVbos() const override;
-	virtual const GLuint getTexture(const std::string& textureName) const override;
 };
 
 #endif // !_MODELS_RENDERMODEL_H
