@@ -1,7 +1,6 @@
 #ifndef _ENGINE_MODELMANAGER_H
 #define _ENGINE_MODELMANAGER_H
 
-#include "../Libs/glm/gtc/matrix_transform.hpp"
 #include "ShaderManager.h"
 #include "../Interfaces/RenderObject.h"
 
