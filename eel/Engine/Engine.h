@@ -10,6 +10,7 @@
 #include "SceneManager.h"
 #include "ShaderManager.h"
 #include "TextureLoader.h"
+#include "InputManager.h"
 
 class Engine {
 private:
@@ -17,32 +18,45 @@ private:
 	SceneManager* sceneManager;
 	ShaderManager* shaderManager;
 	TextureLoader* textureLoader;
+	GLUTListener* listener;
 
-	static WindowInfo* window;
+	WindowInfo* window;
 	FramebufferInfo* framebuffer;
 	ContextInfo* context;
+
+	InputManager* inputManager;
+	bool isFullscreen;
+	bool mouseCapture;
 	
 	void initGLEW();
 	void initGLUT();
+	void enterFullscreen();
+	void exitFullscreen();
 
-	static GLUTListener* listener;
 	static void idleCallback();
 	static void displayCallback();
 	static void reshapeCallback(int width, int height);
 	static void closeCallback();
+	static void handleKeyboardCallback(unsigned char key, int x, int y);
+	static void handleKeyboardUpCallback(unsigned char key, int x, int y);
+	static void handleKeyboardSpecialCallback(int key, int x, int y);
+	static void handleKeyboardSpecialUpCallback(int key, int x, int y);
+	static void handleMouseMovement(int x, int y);
 public:
 	Engine();
 	~Engine();
 	bool init();
 	void run();
+	void toggleFullscreen();
+	void toggleMouseCapture();
 
 	ModelManager* getModelManager() const;
 	SceneManager* getSceneManager() const;
 	ShaderManager* getShaderManager() const;
 	TextureLoader* getTextureLoader() const;
-
-	void enterFullscreen();
-	void exitFullscreen();
+	GLUTListener* getListener() const;
+	WindowInfo* getWindowInfo() const;
+	InputManager* getInputManager() const;
 };
 
 #endif // !_ENGINE_ENGINE_H
