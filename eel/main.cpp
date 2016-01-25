@@ -32,9 +32,9 @@ int main(int argc, char** argv) {
 	sphere->create(1.0, 24, 48);
 	sphere->setRotation(glm::vec3(30.0f, 0.0f, 0.0f));
 	sphere->setRotationSpeed(glm::vec3(0.0f, 20.0f, 0.0f));
-	sphere->addMaterial(0, "Resources/Textures/sphere1.bmp", 0.02f, 0.5f, 1.9f, 10.9f, engine->getTextureLoader());
-	sphere->addMaterial(1, "Resources/Textures/sphere_dots.png", 0.02f, 0.5f, 1.9f, 10.9f, engine->getTextureLoader());
-	sphere->addNormalMap("Resources/Textures/7693-normal.bmp", engine->getTextureLoader());
+	sphere->addMaterial(0, "Resources/Textures/sphere1.bmp", 0.02f, 0.3f, 2.5f, 15.0f, engine->getTextureLoader());
+	sphere->addMaterial(1, "Resources/Textures/sphere_dots.png", 0.02f, 0.8f, 1.0f, 1.0f, engine->getTextureLoader());
+	sphere->addNormalMap("Resources/Textures/fish-normal.bmp", engine->getTextureLoader());
 
 	engine->getModelManager()->setModel("sphere", sphere);
 	
