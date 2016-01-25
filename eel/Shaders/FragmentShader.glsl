@@ -140,8 +140,7 @@ void main(void) {
 	if(useNormalMap) {
 		vec3 localNormal = texture(normalMap, textureCoords).rgb;
 		localNormal = localNormal * 2.0 - 1.0;
-		//N - normal
-		//V - -viewDirection
+
 		vec3 dp1 = dFdx(-viewDirection);
 		vec3 dp2 = dFdy(-viewDirection);
 		vec2 dCoord1 = dFdx(textureCoords);
