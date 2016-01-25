@@ -4,6 +4,7 @@ RenderModel::RenderModel() {
 	for(ModelMaterial* mat : materials) {
 		mat = NULL;
 	}
+	normalMap = 0;
 
 	worldPosition = glm::vec3(0.0f);
 	rotation = glm::vec3(0.0f);
@@ -154,10 +155,22 @@ void RenderModel::setMaterialUniforms(const GLuint program) const {
 	static_assert(sizeof(glm::vec4) == sizeof(GLfloat) * 4, "Platform doesn't support this directly.");
 	static_assert(sizeof(glm::vec2) == sizeof(GLfloat) * 2, "Platform doesn't support this directly.");
 
-	//glUniform1iv(glGetUniformLocation(program, "materialTextures"), i, &textureIndices[0]);
 	glUniform4fv(glGetUniformLocation(program, "materialProperties"), MAX_MATERIALS, glm::value_ptr(properties[0]));
 	glUniform2fv(glGetUniformLocation(program, "materialSpeeds"), MAX_MATERIALS, glm::value_ptr(speeds[0]));
 	glUniform1i(glGetUniformLocation(program, "materialCount"), i);
+
+	// Send normal map (if it exists and we still have free buffers)
+	int normalTextureIndex = i + 1;
+	GLuint tex = getTextureConst(normalTextureIndex);
+	if(normalMap == 0 || tex == -1) {
+		glUniform1i(glGetUniformLocation(program, "useNormalMap"), false);
+		return;
+	}
+
+	glActiveTexture(tex);
+	glBindTexture(GL_TEXTURE_2D, normalMap);
+	glUniform1i(glGetUniformLocation(program, "useNormalMap"), true);
+	glUniform1i(glGetUniformLocation(program, "normalMap"), normalTextureIndex);
 }
 
 void RenderModel::clearMaterial(unsigned int index) {
@@ -165,6 +178,19 @@ void RenderModel::clearMaterial(unsigned int index) {
 		return;
 	}
 	materials.erase(materials.begin() + index);
+}
+
+void RenderModel::addNormalMap(const std::string& textureFileName, TextureLoader* textureLoader) {
+	GLuint texture = textureLoader->loadTexture(textureFileName);
+	if(texture == 0) {
+		return;
+	}
+
+	normalMap = texture;
+}
+
+void RenderModel::clearNormalMap() {
+	normalMap = 0;
 }
 
 GLuint RenderModel::getVao() const {

@@ -16,6 +16,7 @@ protected:
 	GLuint vao;
 	std::vector<GLuint> vbos;
 	std::vector<ModelMaterial*> materials;
+	GLuint normalMap;
 	glm::vec3 worldPosition;
 	glm::vec3 rotation;
 	glm::vec3 rotationSpeed;
@@ -39,6 +40,9 @@ public:
 
 	virtual void addMaterial(unsigned int index, const std::string& textureFileName, float ambient, float diffusive, float specular, float shininess, TextureLoader* textureLoader);
 	virtual void clearMaterial(unsigned int index);
+
+	virtual void addNormalMap(const std::string& textureFileName, TextureLoader* textureLoader);
+	virtual void clearNormalMap();
 
 	virtual GLuint getVao() const override;
 	virtual const std::vector<GLuint>& getVbos() const override;
