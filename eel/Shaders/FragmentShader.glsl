@@ -47,23 +47,24 @@ in vec3 worldNormal;
 in vec2 textureCoords;
 in vec4 color;
 
-sampler2D getTexture(in int index) {
+void getTexture(in int index, in vec2 texPos, out vec4 textureColor) {
 	// MAX_MATERIALS
 	switch(index) {
 		case 0:
-			return texture0;
+			textureColor = texture(texture0, texPos);
 		case 1:
-			return texture1;
+			textureColor = texture(texture1, texPos);
 		case 2:
-			return texture2;
+			textureColor = texture(texture2, texPos);
 		case 3:
-			return texture3;
+			textureColor = texture(texture3, texPos);
 	}
 }
 
-void calculateMaterial(in sampler2D texturePtr, in vec4 matProps, in vec2 matSpeeds, inout vec4 baseColor, inout vec4 baseProperties) {
+void calculateMaterial(in int index, in vec4 matProps, in vec2 matSpeeds, inout vec4 baseColor, inout vec4 baseProperties) {
 	vec2 texturePosition = matSpeeds * timePassed + textureCoords;
-	vec4 textureColor = texture(texturePtr, texturePosition);
+	vec4 textureColor;
+	getTexture(index, texturePosition, textureColor);
 	float textureAlpha = textureColor.a;
 	textureColor.a = 1.0;
 
@@ -122,7 +123,7 @@ void main(void) {
 
 	// Materials
 	for(int i = 0; i < materialCount; i++) {
-		calculateMaterial(getTexture(i), materialProperties[i], materialSpeeds[i], baseColor, baseProperties);
+		calculateMaterial(i, materialProperties[i], materialSpeeds[i], baseColor, baseProperties);
 	}
 	
 	float ambient = baseProperties.x;
