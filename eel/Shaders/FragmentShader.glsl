@@ -37,6 +37,9 @@ uniform sampler2D texture3;
 uniform vec4 materialProperties[4];
 uniform vec2 materialSpeeds[4];
 uniform int materialCount;
+// Normal map
+uniform bool useNormalMap;
+uniform sampler2D normalMap;
 
 // Vertex properties, from Vertex shader, preserve names!
 in vec3 worldPosition;
@@ -68,13 +71,12 @@ void calculateMaterial(in sampler2D texturePtr, in vec4 matProps, in vec2 matSpe
 	baseProperties = mix(baseProperties, matProps, textureAlpha);
 }
 
-void calculateLight(in mat3 light, in bool isPointLight, in float shininess, inout vec3 diffuseSum, inout vec3 specularSum) {
+void calculateLight(in mat3 light, in bool isPointLight, in vec3 normal, in vec3 viewDirection, in float shininess, inout vec3 diffuseSum, inout vec3 specularSum) {
 	vec3 lPos = light[0];
 	vec3 lColor = light[1];
 	float attCons = light[2].x;
 	float attLin = light[2].y;
 	float attQuad = light[2].z;
-	vec3 normal = normalize(worldNormal);
 
 	// Direction TO viewer and light
 	vec3 lightDirection;
@@ -100,7 +102,6 @@ void calculateLight(in mat3 light, in bool isPointLight, in float shininess, ino
 		// Blinn-Phong
 		energyCoeff = (8.0 + shininess) / (8.0 * PI);
 		// halfway between direction to light and to viewer
-		vec3 viewDirection = normalize(eyePosition - worldPosition);
 		reflectDir = normalize(lightDirection + viewDirection);
 	} else {
 		// Phong
@@ -129,11 +130,32 @@ void main(void) {
 	float specular = baseProperties.z;
 	float shininess = baseProperties.w;
 
+	vec3 viewDirection = normalize(eyePosition - worldPosition);
+	vec3 normal = normalize(worldNormal);
+	if(useNormalMap) {
+		vec3 localNormal = texture(normalMap, textureCoords).rgb;
+		localNormal = localNormal * 2.0 - 1.0;
+		//N - normal
+		//V - -viewDirection
+		vec3 dp1 = dFdx(-viewDirection);
+		vec3 dp2 = dFdy(-viewDirection);
+		vec2 dCoord1 = dFdx(textureCoords);
+		vec2 dCoord2 = dFdy(textureCoords);
+		
+		vec3 dp1perp = cross(normal, dp1);
+		vec3 dp2perp = cross(dp2, normal);
+		vec3 tangent = dp2perp * dCoord1.x + dp1perp * dCoord2.x;
+		vec3 bitangent = dp2perp * dCoord1.y + dp1perp * dCoord2.y;
+
+		float invFrame = inversesqrt(max(dot(tangent, tangent), dot(bitangent, bitangent)));
+		normal = normalize(mat3(tangent * invFrame, bitangent * invFrame, normal) * localNormal);
+	}
+
 	// Lights
 	vec3 diffuseSum = vec3(0.0);
 	vec3 specularSum = vec3(0.0);
 	for(int i = 0; i < lightCount; i++) {
-		calculateLight(lights[i], lightIsPointlight[i], shininess, diffuseSum, specularSum);
+		calculateLight(lights[i], lightIsPointlight[i], normal, viewDirection, shininess, diffuseSum, specularSum);
 	}
 
 	out_color = baseColor;
