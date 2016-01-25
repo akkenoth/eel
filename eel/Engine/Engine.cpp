@@ -44,7 +44,7 @@ void Engine::initGLEW() {
 
 void Engine::initGLUT() {
 	int argc = 1;
-	char *argv[] = {"foobar", NULL};
+	char *argv[] = {"foobar"};
 	glutInit(&argc, argv);
 
 	if(context->core) {

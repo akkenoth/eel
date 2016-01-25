@@ -118,7 +118,7 @@ GLuint getTextureConst(int i) {
 		case 8:
 			return GL_TEXTURE8;
 		default:
-			return -1;
+			return 0;
 	}
 }
 
@@ -136,7 +136,7 @@ void RenderModel::setMaterialUniforms(const GLuint program) const {
 		}
 
 		GLuint tex = getTextureConst(i);
-		if(tex == -1) {
+		if(tex == 0) {
 			continue;
 		}
 
@@ -162,7 +162,7 @@ void RenderModel::setMaterialUniforms(const GLuint program) const {
 	// Send normal map (if it exists and we still have free buffers)
 	int normalTextureIndex = i + 1;
 	GLuint tex = getTextureConst(normalTextureIndex);
-	if(normalMap == 0 || tex == -1) {
+	if(normalMap == 0 || tex == 0) {
 		glUniform1i(glGetUniformLocation(program, "useNormalMap"), false);
 		return;
 	}
