@@ -28,6 +28,10 @@ void SceneManager::notifyFrameBegin() {
 	lastTick = nowTime;
 
 	modelManager->update(totalTimePassed, deltaTime);
+
+	camera->move(deltaTime, inputManager->getKeyState('w'), inputManager->getKeyState('s'), inputManager->getKeyState('a'), inputManager->getKeyState('d'));
+	camera->rotate(deltaTime, inputManager->getMouseMovementX(), inputManager->getMouseMovementY());
+	inputManager->clearMouseMovement();
 }
 
 void SceneManager::notifyFrameDisplay() {
@@ -42,17 +46,18 @@ void SceneManager::notifyFrameDisplay() {
 	glUniform1f(glGetUniformLocation(program, "timePassed"), totalTimePassed);
 
 	// Set up camera
-	glm::mat4 projectionMatrix = glm::perspective(camera->verticalFOV, camera->aspectRatio, camera->nearClip, camera->farClip);
-	// Todo: replace lookAt
-	glm::mat4 viewMatrix = glm::lookAt(camera->position, glm::vec3(0,0,0), camera->orientation);
+	glm::vec3 eyePosition = camera->getEyePosition();
+	glm::mat4 viewMatrix = camera->getViewMatrix();
+	glm::mat4 projectionMatrix = camera->getProjectionMatrix();
+	glUniform3f(glGetUniformLocation(program, "eyePosition"), eyePosition.x, eyePosition.y, eyePosition.z);
 	glUniformMatrix4fv(glGetUniformLocation(program, "viewMatrix"), 1, GL_FALSE, &viewMatrix[0][0]);
 	glUniformMatrix4fv(glGetUniformLocation(program, "projectionMatrix"), 1, GL_FALSE, &projectionMatrix[0][0]);
-	glUniform3f(glGetUniformLocation(program, "eyePosition"), camera->position.x, camera->position.y, camera->position.z);
 
 	// Set up lights
 	std::vector<glm::mat3> lightMatrices;
 	lightMatrices.reserve(MAX_LIGHTS);
 	std::vector<GLint> lightIsPointLight;
+	lightIsPointLight.reserve(MAX_LIGHTS);
 	for(auto const& l : lights) {
 		if(l == NULL || !l->enabled) {
 			continue;
@@ -63,22 +68,15 @@ void SceneManager::notifyFrameDisplay() {
 		lightIsPointLight.push_back((GLint)(l->isPointLight));
 	}
 
-	glUniformMatrix3fv(glGetUniformLocation(program, "lights"), MAX_LIGHTS/*lightMatrices.size()*/, GL_FALSE, glm::value_ptr(lightMatrices[0]));
-	glUniform1iv(glGetUniformLocation(program, "lightIsPointlight"), MAX_LIGHTS/*lightIsPointLight.size()*/, &lightIsPointLight[0]);
-	glUniform1i(glGetUniformLocation(program, "lightCount"), lightMatrices.size());
-
-	/*for(int i = 0; i < MAX_LIGHTS; i++) {
-		LightSource* l = lights[i];
-		if(l == NULL || !l->enabled) {
-			continue;
-		}
-
-		std::string lightUniformString = std::string("light") + std::to_string(i);
-		glm::mat3 lightMatrix(l->position, l->color, glm::vec3(l->attenuationConstant, l->attenuationLinear, l->attenuationQuadratic));
-		glUniformMatrix3fv(glGetUniformLocation(program, lightUniformString.c_str()), 1, GL_FALSE, &lightMatrix[0][0]);
-		lightUniformString = std::string("light") + std::to_string(i) + "PointLight";
-		glUniform1i(glGetUniformLocation(program, lightUniformString.c_str()), l->isPointLight);
-	}*/
+	int lightCount = lightMatrices.size();
+	// If no lights, push at least 1 value to vectors so that &vec[0] is not null-reference
+	if(lightCount == 0) {
+		lightMatrices.push_back(glm::mat3(glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(1.0f)));
+		lightIsPointLight.push_back(1);
+	}
+	glUniformMatrix3fv(glGetUniformLocation(program, "lights"), MAX_LIGHTS, GL_FALSE, glm::value_ptr(lightMatrices[0]));
+	glUniform1iv(glGetUniformLocation(program, "lightIsPointlight"), MAX_LIGHTS, &lightIsPointLight[0]);
+	glUniform1i(glGetUniformLocation(program, "lightCount"), lightCount);
 
 	// Draw models
 	modelManager->draw(program);
@@ -87,7 +85,7 @@ void SceneManager::notifyFrameDisplay() {
 void SceneManager::notifyFrameEnd() {}
 
 void SceneManager::notifyReshape(int width, int height, int previousWidth, int previousHeight) {
-	camera->aspectRatio = (float)(width) / (float)(height);
+	camera->setAspectRatio((float)(width) / (float)(height));
 }
 
 void SceneManager::setProgram(GLuint program) {
@@ -101,6 +99,10 @@ void SceneManager::setModelManager(ModelManager *& manager) {
 	modelManager = manager;
 }
 
+void SceneManager::setInputManager(InputManager*& manager) {
+	inputManager = manager;
+}
+
 void SceneManager::addLight(unsigned int index, const glm::vec3& p, const glm::vec3& c, const float& aC, const float& aL, const float& aQ, const bool& iPL) {
 	if(index > lights.size() || lights.size() >= MAX_LIGHTS) {
 		return;
@@ -110,16 +112,20 @@ void SceneManager::addLight(unsigned int index, const glm::vec3& p, const glm::v
 	lights.insert(lights.begin() + index, light);
 }
 
-LightSource* SceneManager::getLight(unsigned int index) {
+void SceneManager::clearLight(unsigned int index) {
+	if(index >= lights.size()) {
+		return;
+	}
+	lights.erase(lights.begin() + index);
+}
+
+LightSource* SceneManager::getLight(unsigned int index) const {
 	if(index >= lights.size()) {
 		return NULL;
 	}
 	return lights[index];
 }
 
-void SceneManager::clearLight(unsigned int index) {
-	if(index >= lights.size()) {
-		return;
-	}
-	lights.erase(lights.begin() + index);
+Camera* SceneManager::getCamera() const {
+	return camera;
 }
