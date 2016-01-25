@@ -22,6 +22,10 @@ struct LightSource {
 		isPointLight = iPL;
 		enabled = true;
 	}
+
+	void toggle() {
+		enabled = !enabled;
+	}
 };
 
 #endif // !_STRUCTURES_LIGHTSOURCE_H
