@@ -52,12 +52,16 @@ void getTexture(in int index, in vec2 texPos, out vec4 textureColor) {
 	switch(index) {
 		case 0:
 			textureColor = texture(texture0, texPos);
+			break;
 		case 1:
 			textureColor = texture(texture1, texPos);
+			break;
 		case 2:
 			textureColor = texture(texture2, texPos);
+			break;
 		case 3:
 			textureColor = texture(texture3, texPos);
+			break;
 	}
 }
 
