@@ -158,10 +158,9 @@ void RenderModel::setMaterialUniforms(const GLuint program) const {
 	glUniform4fv(glGetUniformLocation(program, "materialProperties"), MAX_MATERIALS, glm::value_ptr(properties[0]));
 	glUniform2fv(glGetUniformLocation(program, "materialSpeeds"), MAX_MATERIALS, glm::value_ptr(speeds[0]));
 	glUniform1i(glGetUniformLocation(program, "materialCount"), i);
-
+	
 	// Send normal map (if it exists and we still have free buffers)
-	int normalTextureIndex = i + 1;
-	GLuint tex = getTextureConst(normalTextureIndex);
+	GLuint tex = getTextureConst(i);
 	if(normalMap == 0 || tex == 0) {
 		glUniform1i(glGetUniformLocation(program, "useNormalMap"), false);
 		return;
@@ -170,7 +169,7 @@ void RenderModel::setMaterialUniforms(const GLuint program) const {
 	glActiveTexture(tex);
 	glBindTexture(GL_TEXTURE_2D, normalMap);
 	glUniform1i(glGetUniformLocation(program, "useNormalMap"), true);
-	glUniform1i(glGetUniformLocation(program, "normalMap"), normalTextureIndex);
+	glUniform1i(glGetUniformLocation(program, "normalMap"), i);
 }
 
 void RenderModel::clearMaterial(unsigned int index) {
