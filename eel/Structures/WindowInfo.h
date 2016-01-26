@@ -5,13 +5,16 @@
 
 struct WindowInfo {
 	std::string name;
-	int width, height;
-	int positionX, positionY;
+	int width;
+	int height;
+	int positionX;
+	int positionY;
 	bool isReshapable;
 
 	WindowInfo() {
-		name = "OpenGL tutorial";
-		width = 800; height = 600;
+		name = "EEL";
+		width = 800;
+		height = 600;
 		positionX = 300;
 		positionY = 300;
 		isReshapable = true;
