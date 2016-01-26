@@ -34,6 +34,7 @@ uniform sampler2D texture0;
 uniform sampler2D texture1;
 uniform sampler2D texture2;
 uniform sampler2D texture3;
+uniform vec4 baseMaterial;
 uniform vec4 materialProperties[4];
 uniform vec2 materialSpeeds[4];
 uniform int materialCount;
@@ -123,7 +124,7 @@ void calculateLight(in mat3 light, in bool isPointLight, in vec3 normal, in vec3
 void main(void) {
 	// Base color and material properties
 	vec4 baseColor = color;
-	vec4 baseProperties = materialProperties[0];
+	vec4 baseProperties = baseMaterial;
 
 	// Materials
 	for(int i = 0; i < materialCount; i++) {
