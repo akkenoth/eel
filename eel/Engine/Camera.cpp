@@ -67,10 +67,10 @@ void Camera::rotate(float time, int x, int y) {
 		angleX -= 2.0f * M_PI;
 	}
 	angleY -= CAMERA_ROTATION_SPEED * y;
-	if(angleY <= -0.5f * M_PI) {
-		angleY = -0.5f * M_PI;
-	} else if(angleY >= 0.5f * M_PI) {
-		angleY = 0.5f * M_PI;
+	if(angleY <= -CAMERA_MAX_Y_ANGLE) {
+		angleY = -CAMERA_MAX_Y_ANGLE;
+	} else if(angleY >= CAMERA_MAX_Y_ANGLE) {
+		angleY = CAMERA_MAX_Y_ANGLE;
 	}
 
 	direction = glm::rotateY(glm::rotateX(glm::vec3(0.0f, 0.0f, -1.0f), angleY), angleX);

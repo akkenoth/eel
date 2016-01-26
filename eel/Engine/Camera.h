@@ -11,6 +11,7 @@
 
 #define CAMERA_SPEED 3.0f
 #define CAMERA_ROTATION_SPEED 0.001f
+#define CAMERA_MAX_Y_ANGLE 1.57f // _almost_ M_PI/2
 
 class Camera {
 private:
