@@ -1,12 +1,16 @@
 # EEL
 Modern OpenGL (3+) sample program.
 
+For now it displays a rotating sphere with 2 materials and a normal map applied, 2 sources of light (white - 'sun' and red - red sphere) and a skybox.
+Finally it should display a (very simplified) 3D eel.
+
 ## Main features
 * Working in OpenGL 3.3 Core profile
 * Most computations happen in shaders (almost zero CPU usage)
 * Improved Blinn-Phong attenuated shading model
 * Normal mapping
 * N light sources per scene, M materials per object (with alpha-blending - it's possible to apply a non-specular material on a very glossy one)
+* Modular/OOP design
 
 ## Controls
 * WSAD for camera movement
