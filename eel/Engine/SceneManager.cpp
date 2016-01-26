@@ -79,6 +79,8 @@ void SceneManager::notifyFrameDisplay() {
 	glUniform1i(glGetUniformLocation(program, "lightCount"), lightCount);
 
 	// Draw models
+
+	glCullFace(GL_FRONT);
 	modelManager->draw(program);
 }
 
