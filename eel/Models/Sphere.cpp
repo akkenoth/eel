@@ -67,8 +67,9 @@ void Sphere::draw(const GLuint program) {
 	setMaterialUniforms(program);
 
 	// Draw
+	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
-	// glDrawElements(GL_TRIANGLES, indicesCount, GL_UNSIGNED_INT, 0);
-	// glCullFace(GL_FRONT);
+	glDrawElements(GL_TRIANGLES, indicesCount, GL_UNSIGNED_INT, 0);
+	glCullFace(GL_FRONT);
 	glDrawElements(GL_TRIANGLES, indicesCount, GL_UNSIGNED_INT, 0);
 }
