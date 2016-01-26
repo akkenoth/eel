@@ -225,6 +225,8 @@ bool Engine::init() {
 	context = new ContextInfo(3, 3, true /*CORE*/);
 	framebuffer = new FramebufferInfo(true, true, true, true);
 
+	initGLUT();
+
 	sceneManager = new SceneManager();
 	listener = sceneManager;
 	shaderManager = new ShaderManager();
@@ -236,7 +238,6 @@ bool Engine::init() {
 		sceneManager->setInputManager(inputManager);
 		inputManager->setWindowInfo(window);
 
-		initGLUT();
 		//inputManager->toggleMouseCapture();
 	} else {
 		return false;
