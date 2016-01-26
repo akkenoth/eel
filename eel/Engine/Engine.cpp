@@ -142,28 +142,16 @@ void Engine::closeCallback() {
 
 void Engine::handleKeyboardCallback(unsigned char key, int x, int y) {
 	Engine* engine = static_cast<Engine*>(glutGetWindowData());
-	switch(key) {
-		case 'w':
-		case 'W':
-			engine->getInputManager()->setKeyDown('w');
+	engine->getInputManager()->setKeyDown(key);
+	/*switch(key) {
+		default:
 			break;
-		case 's':
-		case 'S':
-			engine->getInputManager()->setKeyDown('s');
-			break;
-		case 'a':
-		case 'A':
-			engine->getInputManager()->setKeyDown('a');
-			break;
-		case 'd':
-		case 'D':
-			engine->getInputManager()->setKeyDown('d');
-			break;
-	}
+	}*/
 }
 
 void Engine::handleKeyboardUpCallback(unsigned char key, int x, int y) {
 	Engine* engine = static_cast<Engine*>(glutGetWindowData());
+	engine->getInputManager()->setKeyUp(key);
 	switch(key) {
 		case 27:
 			glutLeaveMainLoop();
@@ -174,23 +162,7 @@ void Engine::handleKeyboardUpCallback(unsigned char key, int x, int y) {
 			break;
 		case 'm':
 		case 'M':
-			engine->toggleMouseCapture();
-			break;
-		case 'w':
-		case 'W':
-			engine->getInputManager()->setKeyUp('w');
-			break;
-		case 's':
-		case 'S':
-			engine->getInputManager()->setKeyUp('s');
-			break;
-		case 'a':
-		case 'A':
-			engine->getInputManager()->setKeyUp('a');
-			break;
-		case 'd':
-		case 'D':
-			engine->getInputManager()->setKeyUp('d');
+			engine->getInputManager()->toggleMouseCapture();
 			break;
 	}
 }
@@ -203,7 +175,7 @@ void Engine::handleKeyboardSpecialCallback(int key, int x, int y) {
 		case GLUT_KEY_DOWN:
 		case GLUT_KEY_LEFT:
 		case GLUT_KEY_RIGHT:
-			engine->getInputManager()->setSpecialKeyDown(key);
+			//engine->getInputManager()->setSpecialKeyDown(key);
 			break;
 	}
 }
@@ -236,7 +208,7 @@ void Engine::handleKeyboardSpecialUpCallback(int key, int x, int y) {
 		case GLUT_KEY_DOWN:
 		case GLUT_KEY_LEFT:
 		case GLUT_KEY_RIGHT:
-			engine->getInputManager()->setSpecialKeyUp(key);
+			//engine->getInputManager()->setSpecialKeyUp(key);
 			break;
 	}
 }
@@ -250,11 +222,9 @@ void Engine::handleMouseMovement(int x, int y) {
 
 bool Engine::init() {
 	window = new WindowInfo(std::string("EEL"), 200, 200, 800, 800, true);
-	///TODO: make compatible with CORE.
 	context = new ContextInfo(3, 3, true /*CORE*/);
 	framebuffer = new FramebufferInfo(true, true, true, true);
 
-	initGLUT();
 	sceneManager = new SceneManager();
 	listener = sceneManager;
 	shaderManager = new ShaderManager();
@@ -264,6 +234,10 @@ bool Engine::init() {
 	if(sceneManager && shaderManager && modelManager && textureLoader && inputManager) {
 		sceneManager->setModelManager(modelManager);
 		sceneManager->setInputManager(inputManager);
+		inputManager->setWindowInfo(window);
+
+		initGLUT();
+		//inputManager->toggleMouseCapture();
 	} else {
 		return false;
 	}
@@ -280,16 +254,6 @@ void Engine::toggleFullscreen() {
 		exitFullscreen();
 	} else {
 		enterFullscreen();
-	}
-}
-
-void Engine::toggleMouseCapture() {
-	if(mouseCapture) {
-		mouseCapture = false;
-		glutSetCursor(GLUT_CURSOR_INHERIT);
-	} else {
-		mouseCapture = true;
-		glutSetCursor(GLUT_CURSOR_NONE);
 	}
 }
 

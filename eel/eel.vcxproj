@@ -144,8 +144,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\Camera.cpp" />
     <ClCompile Include="Engine\DebugOutput.cpp" />
     <ClCompile Include="Engine\Engine.cpp" />
+    <ClCompile Include="Engine\InputManager.cpp" />
     <ClCompile Include="Engine\ModelManager.cpp" />
     <ClCompile Include="Engine\TextureLoader.cpp" />
     <ClCompile Include="Models\Cube.cpp" />
@@ -158,8 +160,10 @@
     <ClCompile Include="Models\Triangle.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\Camera.h" />
     <ClInclude Include="Engine\DebugOutput.h" />
     <ClInclude Include="Engine\Engine.h" />
+    <ClInclude Include="Engine\InputManager.h" />
     <ClInclude Include="Engine\ModelManager.h" />
     <ClInclude Include="Engine\TextureLoader.h" />
     <ClInclude Include="Libs\GLWrapper.h" />
@@ -176,7 +180,6 @@
     <ClInclude Include="Structures\ContextInfo.h" />
     <ClInclude Include="Structures\FramebufferInfo.h" />
     <ClInclude Include="Structures\BMPHeader.h" />
-    <ClInclude Include="Structures\Camera.h" />
     <ClInclude Include="Structures\ModelMaterial.h" />
     <ClInclude Include="Structures\LightSource.h" />
     <ClInclude Include="Structures\WindowInfo.h" />
@@ -189,6 +192,7 @@
       <FileType>Document</FileType>
     </None>
     <None Include="glew32.dll" />
+    <None Include="libpng16.dll" />
     <None Include="Shaders\FragmentColorShader.glsl" />
     <None Include="Shaders\FragmentShader.glsl" />
     <None Include="Shaders\VertexColorShader.glsl" />

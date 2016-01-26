@@ -66,6 +66,12 @@
     <ClCompile Include="Models\Sphere.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\InputManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Structures\VertexFormat.h">
@@ -134,13 +140,16 @@
     <ClInclude Include="Structures\LightSource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Structures\Camera.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Structures\ModelMaterial.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Libs\libpngWrapper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\InputManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -161,5 +170,6 @@
     <None Include="Shaders\FragmentTextureShader.glsl" />
     <None Include="Shaders\VertexShader.glsl" />
     <None Include="Shaders\FragmentShader.glsl" />
+    <None Include="libpng16.dll" />
   </ItemGroup>
 </Project>

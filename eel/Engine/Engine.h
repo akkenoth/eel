@@ -26,7 +26,6 @@ private:
 
 	InputManager* inputManager;
 	bool isFullscreen;
-	bool mouseCapture;
 	
 	void initGLEW();
 	void initGLUT();
@@ -48,7 +47,6 @@ public:
 	bool init();
 	void run();
 	void toggleFullscreen();
-	void toggleMouseCapture();
 
 	ModelManager* getModelManager() const;
 	SceneManager* getSceneManager() const;
