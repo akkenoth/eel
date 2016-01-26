@@ -9,8 +9,15 @@ DEPS=$(OBJECTS:.o=.d)
 generate_deps = $(SHELL) -ec '$(CXX) -MM $(CXXFLAGS) $< | sed -n "H;$$ {g;s@.*:\(.*\)@$< := \$$\(wildcard\1\)\n$*.o $@: $$\($<\)@;p}" > $@'
 -include $(DEPS)
 
-all: $(OBJECTS) $(DEPS)
+run: bin
+	@cd eel
+	@../Bin/eel
+	@cd ..
+
+bin:  $(OBJECTS) $(DEPS)
 	$(CXX) $(LFLAGS) $(OBJECTS) -o Bin/eel
+
+all: bin
 
 Obj/%.d: eel/%.cpp
 	mkdir -p $(@D)

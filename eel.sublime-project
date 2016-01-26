@@ -3,7 +3,7 @@
 	[
 		{
 			"path": ".",
-			"folder_exclude_patterns": ["Obj"]
+			"folder_exclude_patterns": ["Obj/*", "Debug/*"]
 		}
 	]
 }
