@@ -10,28 +10,28 @@ void Skybox::create(GLfloat size) {
 	// Front face
 	vertices.push_back(VertexFormat(glm::vec3(-halfSize, -halfSize, halfSize), glm::vec2(1.0f, 0.334f)));
 	vertices.push_back(VertexFormat(glm::vec3(halfSize, -halfSize, halfSize), glm::vec2(0.75f, 0.334f)));
-	vertices.push_back(VertexFormat(glm::vec3(halfSize, halfSize, halfSize), glm::vec2(0.75f, 0.666f)));
-	vertices.push_back(VertexFormat(glm::vec3(-halfSize, halfSize, halfSize), glm::vec2(1.0f, 0.666f)));
+	vertices.push_back(VertexFormat(glm::vec3(halfSize, halfSize, halfSize), glm::vec2(0.75f, 0.664f)));
+	vertices.push_back(VertexFormat(glm::vec3(-halfSize, halfSize, halfSize), glm::vec2(1.0f, 0.664f)));
 	// Right face
-	vertices.push_back(VertexFormat(glm::vec3(halfSize, halfSize, halfSize), glm::vec2(0.75f, 0.666f)));
-	vertices.push_back(VertexFormat(glm::vec3(halfSize, halfSize, -halfSize), glm::vec2(0.5f, 0.666f)));
+	vertices.push_back(VertexFormat(glm::vec3(halfSize, halfSize, halfSize), glm::vec2(0.75f, 0.664f)));
+	vertices.push_back(VertexFormat(glm::vec3(halfSize, halfSize, -halfSize), glm::vec2(0.5f, 0.664f)));
 	vertices.push_back(VertexFormat(glm::vec3(halfSize, -halfSize, -halfSize), glm::vec2(0.5f, 0.334f)));
 	vertices.push_back(VertexFormat(glm::vec3(halfSize, -halfSize, halfSize), glm::vec2(0.75f, 0.334f)));
 	// Back face
 	vertices.push_back(VertexFormat(glm::vec3(-halfSize, -halfSize, -halfSize), glm::vec2(0.25f, 0.334f)));
 	vertices.push_back(VertexFormat(glm::vec3(halfSize, -halfSize, -halfSize), glm::vec2(0.5f, 0.334f)));
-	vertices.push_back(VertexFormat(glm::vec3(halfSize, halfSize, -halfSize), glm::vec2(0.5f, 0.666f)));
-	vertices.push_back(VertexFormat(glm::vec3(-halfSize, halfSize, -halfSize), glm::vec2(0.25f, 0.666f)));
+	vertices.push_back(VertexFormat(glm::vec3(halfSize, halfSize, -halfSize), glm::vec2(0.5f, 0.664f)));
+	vertices.push_back(VertexFormat(glm::vec3(-halfSize, halfSize, -halfSize), glm::vec2(0.25f, 0.664f)));
 	// Left face
 	vertices.push_back(VertexFormat(glm::vec3(-halfSize, -halfSize, -halfSize), glm::vec2(0.25f, 0.334f)));
 	vertices.push_back(VertexFormat(glm::vec3(-halfSize, -halfSize, halfSize), glm::vec2(0.0f, 0.334f)));
-	vertices.push_back(VertexFormat(glm::vec3(-halfSize, halfSize, halfSize), glm::vec2(0.0f, 0.666f)));
-	vertices.push_back(VertexFormat(glm::vec3(-halfSize, halfSize, -halfSize), glm::vec2(0.25f, 0.666f)));
+	vertices.push_back(VertexFormat(glm::vec3(-halfSize, halfSize, halfSize), glm::vec2(0.0f, 0.664f)));
+	vertices.push_back(VertexFormat(glm::vec3(-halfSize, halfSize, -halfSize), glm::vec2(0.25f, 0.664f)));
 	// Top face
-	vertices.push_back(VertexFormat(glm::vec3(halfSize, halfSize, halfSize), glm::vec2(0.499f, 1.0f)));
-	vertices.push_back(VertexFormat(glm::vec3(-halfSize, halfSize, halfSize), glm::vec2(0.251f, 1.0f)));
-	vertices.push_back(VertexFormat(glm::vec3(-halfSize, halfSize, -halfSize), glm::vec2(0.251f, 0.666f)));
-	vertices.push_back(VertexFormat(glm::vec3(halfSize, halfSize, -halfSize), glm::vec2(0.499f, 0.666f)));
+	vertices.push_back(VertexFormat(glm::vec3(halfSize, halfSize, halfSize), glm::vec2(0.499f, 0.998f)));
+	vertices.push_back(VertexFormat(glm::vec3(-halfSize, halfSize, halfSize), glm::vec2(0.251f, 0.998f)));
+	vertices.push_back(VertexFormat(glm::vec3(-halfSize, halfSize, -halfSize), glm::vec2(0.251f, 0.664f)));
+	vertices.push_back(VertexFormat(glm::vec3(halfSize, halfSize, -halfSize), glm::vec2(0.499f, 0.664f)));
 	// Bottom face
 	vertices.push_back(VertexFormat(glm::vec3(-halfSize, -halfSize, -halfSize), glm::vec2(0.251f, 0.334f)));
 	vertices.push_back(VertexFormat(glm::vec3(halfSize, -halfSize, -halfSize), glm::vec2(0.499f, 0.334f)));
@@ -39,12 +39,13 @@ void Skybox::create(GLfloat size) {
 	vertices.push_back(VertexFormat(glm::vec3(-halfSize, -halfSize, halfSize), glm::vec2(0.251f, 0.001f)));
 
 	// Indices (same order as vertices)
+	// Compared to Cube, right, back and top face indices are in reversed order
 	std::vector<GLuint> indices = {
 		0, 1, 2, 0, 2, 3,
-		4, 5, 6, 4, 6, 7,
-		8, 9, 10, 8, 10, 11,
+		6, 5, 4, 7, 6, 4,
+		10, 9, 8, 11, 10, 8,
 		12, 13, 14, 12, 14, 15,
-		16, 17, 18, 16, 18, 19,
+		18, 17, 16, 19, 18, 16,
 		20, 21, 22, 20, 22, 23};
 
 	GLuint vao;
