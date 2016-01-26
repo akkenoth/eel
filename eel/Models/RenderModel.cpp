@@ -1,11 +1,8 @@
 ﻿#include "RenderModel.h"
 
 RenderModel::RenderModel() {
-	for(ModelMaterial* mat : materials) {
-		mat = NULL;
-	}
+	baseMaterial = NULL;
 	normalMap = 0;
-
 	worldPosition = glm::vec3(0.0f);
 	rotation = glm::vec3(0.0f);
 	rotation = glm::vec3(0.0f);
@@ -56,10 +53,7 @@ void RenderModel::rotate(float deltaTime) {
 }
 
 void RenderModel::setPositionUniforms(const GLuint program) const {
-	glm::mat4 modelPosition = glm::mat4(1.0f);
-	modelPosition[0][3] = worldPosition.x;
-	modelPosition[1][3] = worldPosition.y;
-	modelPosition[2][3] = worldPosition.z;
+	glm::mat4 modelPosition = glm::translate(glm::mat4(1.0f), worldPosition);	
 
 	glUniformMatrix4fv(glGetUniformLocation(program, "modelPosition"), 1, GL_FALSE, &modelPosition[0][0]);
 	glUniform3f(glGetUniformLocation(program, "rotation"), rotation.x, rotation.y, rotation.z);
@@ -80,6 +74,10 @@ void RenderModel::setAttribPointers() const {
 	glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, sizeof(VertexFormat), (void*)(offsetof(VertexFormat, VertexFormat::texture)));
 
 	glBindVertexArray(0);
+}
+
+void RenderModel::setBaseMaterial(float ambient, float diffusive, float specular, float shininess) {
+	baseMaterial = new ModelMaterial(0, ambient, diffusive, specular, shininess);
 }
 
 void RenderModel::addMaterial(unsigned int index, const std::string& textureFileName, float ambient, float diffusive, float specular, float shininess, TextureLoader* textureLoader) {
@@ -151,6 +149,11 @@ void RenderModel::setMaterialUniforms(const GLuint program) const {
 		++i;
 	}
 	
+	// Send base material properties
+	if(baseMaterial) {
+		glUniform4f(glGetUniformLocation(program, "baseMaterial"), baseMaterial->ambient, baseMaterial->diffusive, baseMaterial->specular, baseMaterial->shininess);
+	}
+
 	// Now magical glm/vector pointer hacks begin, just ensure sizes
 	static_assert(sizeof(glm::vec4) == sizeof(GLfloat) * 4, "Platform doesn't support this directly.");
 	static_assert(sizeof(glm::vec2) == sizeof(GLfloat) * 2, "Platform doesn't support this directly.");

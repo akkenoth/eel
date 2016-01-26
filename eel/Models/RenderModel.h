@@ -4,6 +4,7 @@
 #include "../Interfaces/RenderObject.h"
 #include "../Structures/ModelMaterial.h"
 #include "../Libs/glm/gtc/type_ptr.hpp"
+#include "../Libs/glm/gtc/matrix_transform.hpp"
 
 #ifndef M_PI
 #define M_PI 3.1415926535897932384626433832795
@@ -15,6 +16,7 @@ class RenderModel : public RenderObject {
 protected:
 	GLuint vao;
 	std::vector<GLuint> vbos;
+	ModelMaterial* baseMaterial;
 	std::vector<ModelMaterial*> materials;
 	GLuint normalMap;
 	glm::vec3 worldPosition;
@@ -38,6 +40,7 @@ public:
 	virtual void setRotation(const glm::vec3& newRotation);
 	virtual void setRotationSpeed(const glm::vec3& newRotationSpeed);
 
+	virtual void setBaseMaterial(float ambient, float diffusive, float specular, float shininess);
 	virtual void addMaterial(unsigned int index, const std::string& textureFileName, float ambient, float diffusive, float specular, float shininess, TextureLoader* textureLoader);
 	virtual void clearMaterial(unsigned int index);
 
