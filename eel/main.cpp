@@ -26,7 +26,9 @@ int main(int argc, char** argv) {
 	}
 	engine->getSceneManager()->setProgram(program);
 
-	engine->getSceneManager()->addLight(0, glm::vec3(0.0f, 5.0f, 0.0f), glm::vec3(1.0), 1.0f, 0.03f, 0.01f);
+	glm::vec3 sunPosition(9.0f, 20.0f, -12.0f);
+
+	engine->getSceneManager()->addLight(0, sunPosition, glm::vec3(1.0), 1.0f, 0.003f, 0.0001f);
 	engine->getSceneManager()->addLight(0, glm::vec3(3.0f, -5.0f, 0.0f), glm::vec3(4.0f, 1.0f, 1.0f), 1.0f, 0.03f, 0.005f);
 
 	Skybox* skybox = new Skybox();
@@ -37,7 +39,7 @@ int main(int argc, char** argv) {
 	Sphere* sun = new Sphere();
 	sun->create(1.5f, 16, 16, glm::vec4(1.0f, 1.0f, 0.9f, 1.0f));
 	sun->setBaseMaterial(1.0f, 0.0f, 0.0f, 0.0f);
-	sun->setPosition(glm::vec3(9.0f, 20.0f, -12.0f));
+	sun->setPosition(sunPosition);
 	engine->getModelManager()->setModel("sun", sun);
 
 	Sphere* sphere = new Sphere();
