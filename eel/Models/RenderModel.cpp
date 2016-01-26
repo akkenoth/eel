@@ -22,9 +22,7 @@ void RenderModel::destroy() {
 	glDeleteVertexArrays(1, &vao);
 	glDeleteBuffers(vbos.size(), &vbos[0]);
 	vbos.clear();
-	for(ModelMaterial* mat : materials) {
-		delete mat;
-	}
+	materials.clear();
 }
 
 void RenderModel::setPosition(const glm::vec3& newPosition) {
@@ -158,10 +156,14 @@ void RenderModel::setMaterialUniforms(const GLuint program) const {
 	static_assert(sizeof(glm::vec4) == sizeof(GLfloat) * 4, "Platform doesn't support this directly.");
 	static_assert(sizeof(glm::vec2) == sizeof(GLfloat) * 2, "Platform doesn't support this directly.");
 
+	if(i == 0) {
+		properties.push_back(glm::vec4(0.0f));
+		speeds.push_back(glm::vec2(0.0f));
+	}
 	glUniform4fv(glGetUniformLocation(program, "materialProperties"), MAX_MATERIALS, glm::value_ptr(properties[0]));
 	glUniform2fv(glGetUniformLocation(program, "materialSpeeds"), MAX_MATERIALS, glm::value_ptr(speeds[0]));
 	glUniform1i(glGetUniformLocation(program, "materialCount"), i);
-	
+
 	// Send normal map (if it exists and we still have free buffers)
 	GLuint tex = getTextureConst(i);
 	if(normalMap == 0 || tex == 0) {
