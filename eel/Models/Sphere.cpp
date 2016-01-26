@@ -4,7 +4,7 @@ Sphere::Sphere() : RenderModel() {}
 
 Sphere::~Sphere() {}
 
-void Sphere::create(GLfloat radius, GLuint rings, GLuint sectors) {
+void Sphere::create(GLfloat radius, GLuint rings, GLuint sectors, const glm::vec4& color) {
 	std::vector<VertexFormat> vertices;
 	std::vector<GLuint> indices;
 
@@ -19,7 +19,7 @@ void Sphere::create(GLfloat radius, GLuint rings, GLuint sectors) {
 
 			glm::vec3 pos((float) (x * radius), (float) (y), (float) (z * radius));
 			glm::vec2 tex((float) (j * sectorsRecip), (float) (i * ringsRecip));
-			vertices.push_back(VertexFormat(pos, tex));
+			vertices.push_back(VertexFormat(pos, tex, color));
 		}
 	}
 
@@ -68,7 +68,7 @@ void Sphere::draw(const GLuint program) {
 
 	// Draw
 	glCullFace(GL_BACK);
-	glDrawElements(GL_TRIANGLES, indicesCount, GL_UNSIGNED_INT, 0);
-	glCullFace(GL_FRONT);
+	// glDrawElements(GL_TRIANGLES, indicesCount, GL_UNSIGNED_INT, 0);
+	// glCullFace(GL_FRONT);
 	glDrawElements(GL_TRIANGLES, indicesCount, GL_UNSIGNED_INT, 0);
 }

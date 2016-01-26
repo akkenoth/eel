@@ -10,7 +10,7 @@ public:
 	Sphere();
 	~Sphere();
 
-	void create(GLfloat radius, GLuint rings, GLuint sectors);
+	void create(GLfloat radius, GLuint rings, GLuint sectors, const glm::vec4& color = glm::vec4(0.0f));
 	virtual void update(const float totalTimePassed = 0.0f, const float deltaTime = 0.0f) override final;
 	virtual void draw(const GLuint program) override final;
 };
