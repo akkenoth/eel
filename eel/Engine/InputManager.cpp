@@ -69,6 +69,7 @@ void InputManager::toggleMouseCapture() {
 	} else {
 		mouseCapture = true;
 		glutSetCursor(GLUT_CURSOR_NONE);
+		glutWarpPointer(window->width / 2, window->height / 2);
 	}
 	clearMouseMovement();
 }
