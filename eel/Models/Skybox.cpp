@@ -35,8 +35,8 @@ void Skybox::create(GLfloat size) {
 	// Bottom face
 	vertices.push_back(VertexFormat(glm::vec3(-halfSize, -halfSize, -halfSize), glm::vec2(0.251f, 0.334f)));
 	vertices.push_back(VertexFormat(glm::vec3(halfSize, -halfSize, -halfSize), glm::vec2(0.499f, 0.334f)));
-	vertices.push_back(VertexFormat(glm::vec3(halfSize, -halfSize, halfSize), glm::vec2(0.499f, 0.0f)));
-	vertices.push_back(VertexFormat(glm::vec3(-halfSize, -halfSize, halfSize), glm::vec2(0.251f, 0.0f)));
+	vertices.push_back(VertexFormat(glm::vec3(halfSize, -halfSize, halfSize), glm::vec2(0.499f, 0.001f)));
+	vertices.push_back(VertexFormat(glm::vec3(-halfSize, -halfSize, halfSize), glm::vec2(0.251f, 0.001f)));
 
 	// Indices (same order as vertices)
 	std::vector<GLuint> indices = {
