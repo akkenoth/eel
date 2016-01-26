@@ -1,5 +1,4 @@
 #include "InputManager.h"
-#include <iostream>
 
 InputManager::InputManager() {
 	for(int i = 0; i < 256; i++) {
@@ -50,7 +49,6 @@ void InputManager::addMouseMovement(int x, int y) {
 	int halfY = window->height / 2;
 	int deltaX = x - halfX;
 	int deltaY = y - halfY;
-	std::cout << "adding mouse movement:" << deltaX << " " << deltaY << "\n";
 	mouseMovementX += deltaX;
 	mouseMovementY += deltaY;
 
