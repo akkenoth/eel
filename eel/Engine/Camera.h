@@ -6,11 +6,11 @@
 #include "../Libs/glm/gtx/rotate_vector.hpp"
 
 #ifndef M_PI
-#define M_PI 3.1415926535897932384626433832795
+#define M_PI 3.141592f
 #endif // !M_PI
 
-#define CAMERA_SPEED 0.1f
-#define CAMERA_ROTATION_SPEED 0.00001f
+#define CAMERA_SPEED 3.0f
+#define CAMERA_ROTATION_SPEED 0.001f
 
 class Camera {
 private:
