@@ -56,10 +56,16 @@ void RenderModel::rotate(float deltaTime) {
 }
 
 void RenderModel::setPositionUniforms(const GLuint program) const {
-	glm::mat4 modelPosition = glm::translate(glm::mat4(1.0f), worldPosition);	
-
+	glm::mat4 modelPosition = glm::translate(glm::mat4(1.0f), worldPosition);
 	glUniformMatrix4fv(glGetUniformLocation(program, "modelPosition"), 1, GL_FALSE, &modelPosition[0][0]);
-	glUniform3f(glGetUniformLocation(program, "rotation"), rotation.x, rotation.y, rotation.z);
+
+	// glm::mat4 modelPositionIT = glm::transpose(glm::inverse(modelPosition));
+	// glUniformMatrix4fv(glGetUniformLocation(program, "modelPositionIT"), 1, GL_FALSE, &modelPositionIT[0][0]);
+
+	glm::mat4 rotationMatrix = glm::rotate(glm::mat4(1.0f), rotation.x, glm::vec3(1.0f, 0.0f, 0.0f));
+	rotationMatrix = glm::rotate(rotationMatrix, rotation.y, glm::vec3(0.0f, 1.0f, 0.0f));
+	rotationMatrix = glm::rotate(rotationMatrix, rotation.z, glm::vec3(0.0f, 0.0f, 1.0f));
+	glUniformMatrix4fv(glGetUniformLocation(program, "rotationMatrix"), 1, GL_FALSE, &rotationMatrix[0][0]);
 }
 
 void RenderModel::setAttribPointers() const {
