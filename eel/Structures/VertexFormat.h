@@ -35,7 +35,7 @@ public:
 private:
 	void construct(const glm::vec3& pos, const glm::vec3& norm, const glm::vec2& tex, const glm::vec4& col) {
 		position = pos;
-		normal = glm::normalize(position);
+		normal = glm::normalize(norm);
 		color = col;
 		texture = tex;
 	}
