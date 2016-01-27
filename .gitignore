@@ -8,6 +8,8 @@
 *.sln.docstates
 *.sublime-workspace
 
+eel/Resources/Copyrighted/
+
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
