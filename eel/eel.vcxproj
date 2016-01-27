@@ -151,6 +151,8 @@
     <ClCompile Include="Engine\ModelManager.cpp" />
     <ClCompile Include="Engine\TextureLoader.cpp" />
     <ClCompile Include="Models\Cube.cpp" />
+    <ClCompile Include="Models\Cuboid.cpp" />
+    <ClCompile Include="Models\Eel.cpp" />
     <ClCompile Include="Models\Skybox.cpp" />
     <ClCompile Include="Models\Sphere.cpp" />
     <ClCompile Include="Models\Tetragon.cpp" />
@@ -172,6 +174,8 @@
     <ClInclude Include="Libs\glutWrapper.h" />
     <ClInclude Include="Libs\libpngWrapper.h" />
     <ClInclude Include="Models\Cube.h" />
+    <ClInclude Include="Models\Cuboid.h" />
+    <ClInclude Include="Models\Eel.h" />
     <ClInclude Include="Models\Skybox.h" />
     <ClInclude Include="Models\Sphere.h" />
     <ClInclude Include="Models\Tetragon.h" />
