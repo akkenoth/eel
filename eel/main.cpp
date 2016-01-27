@@ -58,8 +58,8 @@ int main(int argc, char** argv) {
 	Eel* eel = new Eel();
 	eel->create(10.0f, 0.5f, 16);
 	eel->setPosition(glm::vec3(0.0f, 0.0f, 0.0f));
-	eel->addMaterial(0, "Resources/Copyrighted/scales1_2.png", 0.05f, 0.4f, 3.5f, 12.0f, engine->getTextureLoader());
-	eel->addMaterial(1, "Resources/Textures/sphere_dots.png", 0.05f, 0.4f, 0.7f, 1.0f, engine->getTextureLoader());
+	eel->addMaterial(0, "Resources/Copyrighted/scales1_2.png", 0.05f, 0.6f, 3.5f, 12.0f, engine->getTextureLoader());
+	eel->addMaterial(1, "Resources/Textures/sphere_dots.png", 0.25f, 0.4f, 0.7f, 1.0f, engine->getTextureLoader());
 	eel->addNormalMap("Resources/Copyrighted/scales1-normal3.png", engine->getTextureLoader());
 	engine->getModelManager()->setModel("eel", eel);
 
