@@ -37,6 +37,8 @@ public:
 	void clearLight(unsigned int index);
 	LightSource* getLight(unsigned int index) const;
 	Camera* getCamera() const;
+
+	void toggleAnimation();
 };
 
 #endif // !_ENGINE_SCENEMANAGER_H

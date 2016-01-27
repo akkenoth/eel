@@ -14,7 +14,7 @@ public:
 
 	void draw(const GLuint program);
 	void update(const float totalTimePassed, const float deltaTime);
-	void toggleAnimation();
+	void toggleAnimation(const float totalTimePassed);
 	void setModel(const std::string& modelName, RenderObject* modelObject);
 	void deleteModel(const std::string& modelName);
 	void deleteNDCModel(const std::string& modelName);

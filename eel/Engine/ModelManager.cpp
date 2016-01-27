@@ -32,12 +32,12 @@ void ModelManager::update(const float totalTimePassed, const float deltaTime) {
 	}
 }
 
-void ModelManager::toggleAnimation() {
+void ModelManager::toggleAnimation(const float totalTimePassed) {
 	for(auto model : modelListNDC) {
-		model.second->toggleAnimation();
+		model.second->toggleAnimation(totalTimePassed);
 	}
 	for(auto model : modelList) {
-		model.second->toggleAnimation();
+		model.second->toggleAnimation(totalTimePassed);
 	}
 }
 

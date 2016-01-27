@@ -154,7 +154,7 @@ void Engine::handleKeyboardUpCallback(unsigned char key, int x, int y) {
 			break;
 		case 't':
 		case 'T':
-			engine->getModelManager()->toggleAnimation();
+			engine->getSceneManager()->toggleAnimation();
 			break;
 	}
 }

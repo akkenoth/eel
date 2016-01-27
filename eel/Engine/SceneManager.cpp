@@ -127,3 +127,7 @@ LightSource* SceneManager::getLight(unsigned int index) const {
 Camera* SceneManager::getCamera() const {
 	return camera;
 }
+
+void SceneManager::toggleAnimation() {
+	modelManager->toggleAnimation(totalTimePassed);
+}
