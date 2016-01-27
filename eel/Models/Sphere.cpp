@@ -55,7 +55,7 @@ void Sphere::create(GLfloat radius, GLuint rings, GLuint sectors, const glm::vec
 	indicesCount = indices.size();
 }
 
-void Sphere::update(const float totalTimePassed, const float deltaTime) {
+void Sphere::update(const float totalTimePassed, const float deltaTime, const bool force) {
 	rotate(deltaTime);
 }
 

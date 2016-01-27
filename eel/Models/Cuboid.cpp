@@ -46,7 +46,7 @@ void Cuboid::create(GLfloat sizeX, GLfloat sizeY, GLfloat sizeZ, const glm::vec4
 	this->vbos.push_back(ibo);
 }
 
-void Cuboid::update(const float totalTimePassed, const float deltaTime) {}
+void Cuboid::update(const float totalTimePassed, const float deltaTime, const bool force) {}
 
 void Cuboid::draw(const GLuint program) {
 	glBindVertexArray(vao);

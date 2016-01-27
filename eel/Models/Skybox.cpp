@@ -67,7 +67,7 @@ void Skybox::create(GLfloat size) {
 	this->vbos.push_back(ibo);
 }
 
-void Skybox::update(const float totalTimePassed, const float deltaTime) {}
+void Skybox::update(const float totalTimePassed, const float deltaTime, const bool force) {}
 
 void Skybox::draw(const GLuint program) {
 	glBindVertexArray(vao);

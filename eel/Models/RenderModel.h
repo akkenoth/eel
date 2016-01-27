@@ -34,14 +34,14 @@ public:
 
 	virtual void draw() override;
 	virtual void draw(const GLuint program) override;
-	virtual void update(const float totalTimePassed = 0.0f, const float deltaTime = 0.0f) override;
+	virtual void update(const float totalTimePassed = 0.0f, const float deltaTime = 0.0f, const bool force = false) override;
 	virtual void destroy() override;
 
 	virtual void setPosition(const glm::vec3& newPosition);
 	virtual void setRotation(const glm::vec3& newRotation);
 	virtual void setRotationSpeed(const glm::vec3& newRotationSpeed);
 
-	virtual void toggleAnimation();
+	virtual void toggleAnimation(const float totalTimePassed);
 
 	virtual void setBaseMaterial(float ambient, float diffusive, float specular, float shininess);
 	virtual void addMaterial(unsigned int index, const std::string& textureFileName, float ambient, float diffusive, float specular, float shininess, TextureLoader* textureLoader);

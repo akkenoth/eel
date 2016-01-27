@@ -9,7 +9,7 @@ public:
 	~Triangle();
 
 	void create();
-	virtual void update(const float totalTimePassed = 0.0f, const float deltaTime = 0.0f) override final;
+	virtual void update(const float totalTimePassed = 0.0f, const float deltaTime = 0.0f, const bool force = false) override final;
 	virtual void draw(const GLuint program) override final;
 };
 

@@ -66,7 +66,7 @@ void Cube::create() {
 	this->vbos.push_back(ibo);
 }
 
-void Cube::update(const float totalTimePassed, const float deltaTime) {
+void Cube::update(const float totalTimePassed, const float deltaTime, const bool force) {
 	rotate(deltaTime);
 }
 

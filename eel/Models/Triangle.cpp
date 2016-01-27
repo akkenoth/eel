@@ -29,7 +29,7 @@ void Triangle::create() {
 	this->vbos.push_back(vbo);
 }
 
-void Triangle::update(const float totalTimePassed, const float deltaTime) {}
+void Triangle::update(const float totalTimePassed, const float deltaTime, const bool force) {}
 
 void Triangle::draw(const GLuint program) {
 	glUseProgram(program);

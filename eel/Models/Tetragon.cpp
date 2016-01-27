@@ -27,7 +27,7 @@ void Tetragon::create() {
 	this->vbos.push_back(vbo);
 }
 
-void Tetragon::update(const float totalTimePassed, const float deltaTime) {}
+void Tetragon::update(const float totalTimePassed, const float deltaTime, const bool force) {}
 
 void Tetragon::draw(const GLuint program) {
 	glUseProgram(program);

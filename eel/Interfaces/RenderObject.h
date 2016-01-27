@@ -14,8 +14,8 @@ public:
 
 	virtual void draw() = 0;
 	virtual void draw(const GLuint program) = 0;
-	virtual void update(const float totalTimePassed = 0.0f, const float deltaTime = 0.0f) = 0;
-	virtual void toggleAnimation() = 0;
+	virtual void update(const float totalTimePassed = 0.0f, const float deltaTime = 0.0f, const bool force = false) = 0;
+	virtual void toggleAnimation(const float totalTimePassed) = 0;
 	virtual void destroy() = 0;
 
 	virtual GLuint getVao() const = 0;

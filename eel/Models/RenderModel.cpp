@@ -17,7 +17,7 @@ void RenderModel::draw() {}
 
 void RenderModel::draw(const GLuint program) {}
 
-void RenderModel::update(const float totalTimePassed, const float deltaTime) {}
+void RenderModel::update(const float totalTimePassed, const float deltaTime, const bool force) {}
 
 void RenderModel::destroy() {
 	glDeleteVertexArrays(1, &vao);
@@ -38,8 +38,9 @@ void RenderModel::setRotationSpeed(const glm::vec3& newRotationSpeed) {
 	rotationSpeed = newRotationSpeed * (float)(M_PI) / 180.0f;
 }
 
-void RenderModel::toggleAnimation() {
+void RenderModel::toggleAnimation(const float totalTimePassed) {
 	animated = !animated;
+	this->update(totalTimePassed, 0.0f, true);
 }
 
 void RenderModel::rotate(float deltaTime) {
