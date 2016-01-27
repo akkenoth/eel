@@ -48,7 +48,7 @@ int main(int argc, char** argv) {
 	engine->getModelManager()->setModel("sun", sun);
 
 	glm::vec3 lampPosition(8.0f, -1.0f, 5.0f);
-	engine->getSceneManager()->addLight(0, lampPosition, glm::vec3(4.0f, 1.0f, 1.0f), 1.0f, 0.003f, 0.0005f);
+	engine->getSceneManager()->addLight(1, lampPosition, glm::vec3(4.0f, 1.0f, 1.0f), 1.0f, 0.003f, 0.0005f);
 	Sphere* lamp = new Sphere();
 	lamp->create(0.3f, 16, 16, glm::vec4(1.0f, 0.2f, 0.2f, 1.0f));
 	lamp->setBaseMaterial(1.0f, 0.0f, 0.0f, 0.0f);
