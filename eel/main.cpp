@@ -38,8 +38,8 @@ int main(int argc, char** argv) {
 	floorBox->setPosition(glm::vec3(0.0f, -8.0f, 0.0f));
 	engine->getModelManager()->setModel("floorBox", floorBox);
 
-	glm::vec3 sunPosition(8.7f, 20.0f, -11.1f);
-	engine->getSceneManager()->addLight(0, sunPosition, glm::vec3(1.0), 1.0f, 0.003f, 0.0001f);
+	glm::vec3 sunPosition(8.7f, 20.0f, 11.1f);
+	engine->getSceneManager()->addLight(0, sunPosition, glm::vec3(1.0), 1.0f, 0.0, 0.0);
 	Sphere* sun = new Sphere();
 	sun->create(1.2f, 16, 16, glm::vec4(1.0f, 1.0f, 0.9f, 1.0f));
 	sun->setBaseMaterial(1.0f, 0.0f, 0.0f, 0.0f);
@@ -55,9 +55,10 @@ int main(int argc, char** argv) {
 	engine->getModelManager()->setModel("lamp", lamp);
 
 	Eel* eel = new Eel();
-	eel->create(5.0f, 0.5f, 18);
+	eel->create(10.0f, 0.5f, 16);
 	eel->setPosition(glm::vec3(0.0f, 0.0f, 0.0f));
-	eel->addMaterial(0, "Resources/Textures/sphere1.bmp", 0.2f, 0.3f, 2.5f, 15.0f, engine->getTextureLoader());
+	eel->addMaterial(0, "Resources/Copyrighted/scales1_2.png", 0.3f, 0.3f, 2.5f, 15.0f, engine->getTextureLoader());
+	eel->addNormalMap("Resources/Copyrighted/scales1-normal3.png", engine->getTextureLoader());
 	engine->getModelManager()->setModel("eel", eel);
 
 	Sphere* sphere = new Sphere();
