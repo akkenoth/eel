@@ -34,10 +34,10 @@ public:
 
 private:
 	void construct(const glm::vec3& pos, const glm::vec3& norm, const glm::vec2& tex, const glm::vec4& col) {
-		position = pos;
+		position = glm::vec3(pos);
 		normal = glm::normalize(norm);
-		color = col;
-		texture = tex;
+		color = glm::vec4(col);
+		texture = glm::vec2(tex);
 	}
 };
 
