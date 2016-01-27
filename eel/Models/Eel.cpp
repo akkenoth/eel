@@ -57,7 +57,8 @@ void Eel::construct(const float time, bool init) {
 
 			glm::vec3 pos((float) (x - halfLength), (float) (y * radius), (float) (z * radius + offsetZ));
 			glm::vec2 tex((float) (j * recip), (float) (1.0 - x/length));
-			vertices.push_back(VertexFormat(pos, tex, color));
+			glm::vec3 norm((float) (x), (float) (y * radius), (float) (z * radius));
+			vertices.push_back(VertexFormat(pos, norm, tex, color));
 		}
 	}
 	if(init) {
@@ -85,16 +86,18 @@ void Eel::construct(const float time, bool init) {
 		// Fin
 		glm::vec3 finPos((float) x, radius * 1.8, (float) offsetZ);
 		glm::vec2 finTex((float) (0.4f / M_PI), (float) (recip * i));
-		vertices.push_back(VertexFormat(finPos, finTex, color));
+		glm::vec3 finNorm(0.0f, 1.0f, 0.0f);
+		vertices.push_back(VertexFormat(finPos, finNorm, finTex, color));
 
 		// Rest of segment
 		for(unsigned int j = 0; j < sectors; j++) {
 			const double y = cos(recip2PI * j);
 			const double z = sin(recip2PI * j);
 
-			glm::vec3 pos((float) (x), (float) (y * radius), (float) (z * radius + offsetZ));
+			glm::vec3 pos((float) x, (float) (y * radius), (float) (z * radius + offsetZ));
 			glm::vec2 tex((float) (j * recip), (float) (i * recip));
-			vertices.push_back(VertexFormat(pos, tex, color));
+			glm::vec3 norm(0.0f, (float) y, (float) z);
+			vertices.push_back(VertexFormat(pos, norm, tex, color));
 		}
 	}
 	if(init) {
@@ -145,7 +148,8 @@ void Eel::construct(const float time, bool init) {
 		// Fin
 		glm::vec3 finPos((float) x, sectionRadius + radius * 0.8, (float) offsetZ);
 		glm::vec2 finTex((float) (0.4f / M_PI), (float) (1.0 + recip * i));
-		vertices.push_back(VertexFormat(finPos, finTex, color));
+		glm::vec3 finNorm(0.0f, 1.0f, 0.0f);
+		vertices.push_back(VertexFormat(finPos, finNorm, finTex, color));
 
 		// Rest of segment
 		for(unsigned int j = 0; j < sectors; j++) {
@@ -154,7 +158,8 @@ void Eel::construct(const float time, bool init) {
 
 			glm::vec3 pos((float) (x), (float) (y * sectionRadius), (float) (z * sectionRadius + offsetZ));
 			glm::vec2 tex((float) (j * recip), (float) (1.0 + i * recip));
-			vertices.push_back(VertexFormat(pos, tex, color));
+			glm::vec3 norm(0.0f, (float) y, (float) z);
+			vertices.push_back(VertexFormat(pos, norm, tex, color));
 		}
 	}
 	if(init) {
@@ -197,10 +202,8 @@ void Eel::construct(const float time, bool init) {
 			indices.push_back(bodyVertexCount + (i + 1) * sectorsPlus);
 		}
 	}
-	
-	if(!init) {
-		std::cout << "vert size" << vertices.size() << "\n";
 
+	if(!init) {
 		glBufferSubData(GL_ARRAY_BUFFER, 0, vertices.size() * sizeof(VertexFormat), &vertices[0]);
 	}
 }
