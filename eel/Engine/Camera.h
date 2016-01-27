@@ -9,7 +9,7 @@
 #define M_PI 3.141592f
 #endif // !M_PI
 
-#define CAMERA_SPEED 3.0f
+#define CAMERA_SPEED 5.0f
 #define CAMERA_ROTATION_SPEED 0.001f
 #define CAMERA_MAX_Y_ANGLE 1.57f // _almost_ M_PI/2
 
