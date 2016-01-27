@@ -7,7 +7,6 @@ OBJECTS=$(patsubst eel/%,Obj/%,$(SRC:.cpp=.o))
 DEPS=$(OBJECTS:.o=.d)
 
 generate_deps = $(SHELL) -ec '$(CXX) -MM $(CXXFLAGS) $< | sed -n "H;$$ {g;s@.*:\(.*\)@$< := \$$\(wildcard\1\)\n$*.o $@: $$\($<\)@;p}" > $@'
--include $(DEPS)
 
 run: Bin/eel
 	@ cd ./eel; ../Bin/eel; cd ..
@@ -25,6 +24,8 @@ Obj/%.d: eel/%.cpp
 
 Obj/%.o: eel/%.cpp Obj/%.d
 	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+-include $(DEPS)
 
 clean:
 	rm $(OBJECTS) $(DEPS) Bin/eel
