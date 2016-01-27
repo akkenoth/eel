@@ -5,6 +5,7 @@
 #include <fstream>
 #include <vector>
 #include <map>
+#include <stdexcept>
 
 #include "../Libs/GLWrapper.h"
 

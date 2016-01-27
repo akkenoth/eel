@@ -79,7 +79,7 @@ void ShaderManager::createProgram(const std::string& shaderName, const std::stri
 const GLuint ShaderManager::getProgram(const std::string& shaderName) {
 	try {
 		return programs.at(shaderName);
-	} catch(std::string e) {
+	} catch(const std::out_of_range& e) {
 		std::cout << "Shader program named " << shaderName.c_str() << " does not exists.\n";
 		return GL_FALSE;
 	}
