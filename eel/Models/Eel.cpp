@@ -47,15 +47,12 @@ void Eel::construct(const float time, bool init) {
 	// Head
 	for(unsigned int i = 0; i <= halfSectors; i++) {
 		const double x = glm::sin(-M_PI / 2 + recipPI * i) * radius * 3;
-		double normalX = 0.0f, normalZ = 0.0f;
+		double normalX = 0.0f;
 		if(animated) {
-			double movementFactor = MOVEMENT_SPEED * (double) time + x - halfLength;
+			double movementFactor = MOVEMENT_SPEED * (double) time + (x - halfLength) * MOVEMENT_LENGTH;
 			offsetZ = glm::sin(movementFactor) * MOVEMENT_AMOUNT;
-
-			double tCosZ = movementFactor * glm::cos(movementFactor) * MOVEMENT_AMOUNT;
-			double sqrtTCosZ2 = glm::sqrt(tCosZ * tCosZ + 1);
-			normalX = tCosZ / sqrtTCosZ2;
-			normalZ = -1 / sqrtTCosZ2;
+			// -f'(x)
+			normalX = -glm::cos(movementFactor) * MOVEMENT_AMOUNT * MOVEMENT_LENGTH;
 		}
 
 		for(unsigned int j = 0; j < sectors; j++) {
@@ -63,7 +60,7 @@ void Eel::construct(const float time, bool init) {
 			const double z = sin(recip2PI * j) * sin(M_PI * i * recip);
 
 			glm::vec3 pos((float) (x - halfLength), (float) (y * radius), (float) (z * radius + offsetZ));
-			glm::vec3 norm((float) x/9.0 - normalX, (float) (y * radius), (float) (z * radius - normalZ));
+			glm::vec3 norm((float) x/9.0 + normalX * radius, (float) (y * radius), (float) (z * radius));
 			glm::vec2 tex((float) (j * recip), (float) (1.0 - x/length));
 			vertices.push_back(VertexFormat(pos, norm, tex, color));
 		}
@@ -88,21 +85,18 @@ void Eel::construct(const float time, bool init) {
 	for(unsigned int i = 0; i <= sectors; i++) {
 		const double x = (double) i * sectorLength - halfLength;
 
-		double normalX = 0.0f, normalZ = 0.0f;
+		double normalX = 0.0f;
 		if(animated) {
-			double movementFactor = MOVEMENT_SPEED * (double) time + x;
+			double movementFactor = MOVEMENT_SPEED * (double) time + x * MOVEMENT_LENGTH;
 			offsetZ = glm::sin(movementFactor) * MOVEMENT_AMOUNT;
-
-			double tCosZ = movementFactor * glm::cos(movementFactor) * MOVEMENT_AMOUNT;
-			double sqrtTCosZ2 = glm::sqrt(tCosZ * tCosZ + 1);
-			normalX = - tCosZ / sqrtTCosZ2;
-			normalZ = 1 / sqrtTCosZ2;
+			// - f'(x)
+			normalX = -glm::cos(movementFactor) * MOVEMENT_AMOUNT * MOVEMENT_LENGTH;
 		}
 
 		// Fin front
 		glm::vec3 finPos((float) x, 1.8f * radius, (float) offsetZ);
 		glm::vec2 finTex((float) (1.0f + 0.4f / M_PI), (float) (recip * i));
-		glm::vec3 finNorm(normalX, 0.0f, 1.0 + normalZ);
+		glm::vec3 finNorm(normalX, 0.0f, 1.0f);
 		// Front top
 		vertices.push_back(VertexFormat(finPos, finNorm, finTex, color));
 		finPos.y = radius;
@@ -116,13 +110,13 @@ void Eel::construct(const float time, bool init) {
 			const double z = sin(recip2PI * j);
 
 			glm::vec3 pos((float) x, (float) (y * radius), (float) (z * radius + offsetZ));
-			glm::vec3 norm(normalX, (float) y, (float) z + normalZ);
+			glm::vec3 norm(normalX, (float) y, (float) (z));
 			glm::vec2 tex((float) (j * recip), (float) (i * recip));
 			vertices.push_back(VertexFormat(pos, norm, tex, color));
 		}
 
 		// Fin back
-		finNorm.z = normalZ - 1.0f;
+		finNorm.z = -1.0f;
 		// Back bottom
 		vertices.push_back(VertexFormat(finPos, finNorm, finTex, color));
 		finPos.y = 1.8f * radius;
@@ -163,8 +157,12 @@ void Eel::construct(const float time, bool init) {
 	const double tailSectorLength = 4.0 * tailRadiusDiff;
 	for(unsigned int i = 0; i <= halfSectors; i++) {
 		const double x = halfLength + i * tailSectorLength;
+
+		double normalX = 0.0f;
 		if(animated) {
-			offsetZ = glm::sin(MOVEMENT_SPEED * (double) time + x) * MOVEMENT_AMOUNT;
+			double movementFactor = MOVEMENT_SPEED * (double) time + x * MOVEMENT_LENGTH;
+			offsetZ = glm::sin(movementFactor) * MOVEMENT_AMOUNT;
+			normalX = -glm::cos(movementFactor) * MOVEMENT_AMOUNT * MOVEMENT_LENGTH;
 		}
 
 		const double sectionRadius = (halfSectors - i) * tailRadiusDiff;
@@ -172,10 +170,10 @@ void Eel::construct(const float time, bool init) {
 		// Fin front
 		glm::vec3 finPos((float) x, sectionRadius + radius * 0.8, (float) offsetZ);
 		glm::vec2 finTex((float) (1.0f + 0.4f / M_PI), (float) (recip * i));
-		glm::vec3 finNorm(0.0f, 0.0f, 1.0f);
+		glm::vec3 finNorm(normalX, 0.0f, 1.0f);
 		// Top
 		vertices.push_back(VertexFormat(finPos, finNorm, finTex, color));
-		finPos.y = sectionRadius;
+		finPos.y = (float) sectionRadius;
 		finTex.x = 1.0f;
 		// Bottom
 		vertices.push_back(VertexFormat(finPos, finNorm, finTex, color));
@@ -186,7 +184,7 @@ void Eel::construct(const float time, bool init) {
 			const double z = sin(recip2PI * j);
 
 			glm::vec3 pos((float) (x), (float) (y * sectionRadius), (float) (z * sectionRadius + offsetZ));
-			glm::vec3 norm(0.0f, (float) y, (float) z);
+			glm::vec3 norm(normalX, (float) y * radius, (float) z * radius);
 			glm::vec2 tex((float) (j * recip), (float) (1.0 + i * recip));
 			vertices.push_back(VertexFormat(pos, norm, tex, color));
 		}
@@ -195,7 +193,7 @@ void Eel::construct(const float time, bool init) {
 		finNorm.z = -1.0f;
 		// Bottom
 		vertices.push_back(VertexFormat(finPos, finNorm, finTex, color));
-		finPos.y = sectionRadius + radius * 0.8;
+		finPos.y = (float)(sectionRadius + radius * 0.8);
 		finTex.x -= (float)(0.4f / M_PI);
 		// Top
 		vertices.push_back(VertexFormat(finPos, finNorm, finTex, color));

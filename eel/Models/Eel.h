@@ -5,6 +5,7 @@
 
 #define MOVEMENT_AMOUNT 0.5
 #define MOVEMENT_SPEED 1.5
+#define MOVEMENT_LENGTH 0.5
 
 class Eel : public RenderModel {
 private:
