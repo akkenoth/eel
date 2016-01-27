@@ -84,13 +84,15 @@ void Eel::construct(const float time, bool init) {
 			offsetZ = glm::sin(MOVEMENT_SPEED * (double) time + x) * MOVEMENT_AMOUNT;
 		}
 
-		// Fin
-		glm::vec3 finPos((float) x, radius * 1.8, (float) offsetZ);
+		// Fin front
+		glm::vec3 finPos((float) x, 1.8f * radius, (float) offsetZ);
 		glm::vec2 finTex((float) (1.0f + 0.4f / M_PI), (float) (recip * i));
-		glm::vec3 finNorm(0.0f, 0.0f, -1.0f);
+		glm::vec3 finNorm(0.0f, 0.0f, 1.0f);
+		// Front top
 		vertices.push_back(VertexFormat(finPos, finNorm, finTex, color));
-		finNorm.z = 1.0f;
-		finTex.x -= 1.0f;
+		finPos.y = radius;
+		finTex.x = 1.0f;
+		// Front bottom
 		vertices.push_back(VertexFormat(finPos, finNorm, finTex, color));
 
 		// Rest of segment
@@ -103,25 +105,34 @@ void Eel::construct(const float time, bool init) {
 			glm::vec2 tex((float) (j * recip), (float) (i * recip));
 			vertices.push_back(VertexFormat(pos, norm, tex, color));
 		}
+
+		// Fin back
+		finNorm.z = -1.0f;
+		// Back bottom
+		vertices.push_back(VertexFormat(finPos, finNorm, finTex, color));
+		finPos.y = 1.8f * radius;
+		finTex.x -= (float)(0.4f / M_PI);
+		// Back top
+		vertices.push_back(VertexFormat(finPos, finNorm, finTex, color));
 	}
 	const unsigned int bodyVertexCount = vertices.size();
 	if(init) {
 		// +2 for fin
-		unsigned int sectorsPlus = sectors + 2;
+		unsigned int sectorsPlus = sectors + 4;
 		// Head-body connection
 		const unsigned int headLastRing = headVertexCount - sectors;
 		for(unsigned int j = 0; j < sectors-1; j++) {
 			indices.push_back(headLastRing + j);
-			indices.push_back(headLastRing + sectorsPlus + j);
-			indices.push_back(headLastRing + sectorsPlus + j + 1);
+			indices.push_back(headLastRing + sectors + j + 3);
+			indices.push_back(headLastRing + sectors + j + 3);
 			indices.push_back(headLastRing + j);
-			indices.push_back(headLastRing + sectorsPlus + j + 1);
-			indices.push_back(headLastRing + j + 1);
+			indices.push_back(headLastRing + sectors + j + 3);
+			indices.push_back(headLastRing + j);
 		}
 
 		// Body
 		for(unsigned int i = 0; i < sectors; i++) {
-			for(unsigned int j = 1; j <= sectors; j++) {
+			for(unsigned int j = 0; j < sectorsPlus - 1; j++) {
 				indices.push_back(headVertexCount + i * sectorsPlus + j);
 				indices.push_back(headVertexCount + (i + 1) * sectorsPlus + j + 1);
 				indices.push_back(headVertexCount + i * sectorsPlus + j + 1);
@@ -129,13 +140,6 @@ void Eel::construct(const float time, bool init) {
 				indices.push_back(headVertexCount + (i + 1) * sectorsPlus + j);
 				indices.push_back(headVertexCount + (i + 1) * sectorsPlus + j + 1);
 			}
-			// Fin's other side
-			indices.push_back(headVertexCount + i * sectorsPlus);
-			indices.push_back(headVertexCount + i * sectorsPlus + sectors + 1);
-			indices.push_back(headVertexCount + (i + 1) * sectorsPlus + sectors + 1);
-			indices.push_back(headVertexCount + i * sectorsPlus);
-			indices.push_back(headVertexCount + (i + 1) * sectorsPlus + sectors + 1);
-			indices.push_back(headVertexCount + (i + 1) * sectorsPlus);
 		}
 	}
 
@@ -150,13 +154,15 @@ void Eel::construct(const float time, bool init) {
 
 		const double sectionRadius = (halfSectors - i) * tailRadiusDiff;
 
-		// Fin
+		// Fin front
 		glm::vec3 finPos((float) x, sectionRadius + radius * 0.8, (float) offsetZ);
-		glm::vec2 finTex((float) (1.0f + 0.4f / M_PI), (float) (1.0 + recip * i));
-		glm::vec3 finNorm(0.0f, 0.0f, -1.0f);
+		glm::vec2 finTex((float) (1.0f + 0.4f / M_PI), (float) (recip * i));
+		glm::vec3 finNorm(0.0f, 0.0f, 1.0f);
+		// Top
 		vertices.push_back(VertexFormat(finPos, finNorm, finTex, color));
-		finNorm.z = 1.0f;
-		finTex.x -= 1.0f;
+		finPos.y = sectionRadius;
+		finTex.x = 1.0f;
+		// Bottom
 		vertices.push_back(VertexFormat(finPos, finNorm, finTex, color));
 
 		// Rest of segment
@@ -169,10 +175,19 @@ void Eel::construct(const float time, bool init) {
 			glm::vec2 tex((float) (j * recip), (float) (1.0 + i * recip));
 			vertices.push_back(VertexFormat(pos, norm, tex, color));
 		}
+
+		// Fin back
+		finNorm.z = -1.0f;
+		// Bottom
+		vertices.push_back(VertexFormat(finPos, finNorm, finTex, color));
+		finPos.y = sectionRadius + radius * 0.8;
+		finTex.x -= (float)(0.4f / M_PI);
+		// Top
+		vertices.push_back(VertexFormat(finPos, finNorm, finTex, color));
 	}
 	if(init) {
-		// +2 for fin
-		unsigned int sectorsPlus = sectors + 2;
+		// +4 for fin
+		unsigned int sectorsPlus = sectors + 4;
 		// Body-tail connection
 		const unsigned int bodyLastRing = bodyVertexCount - sectorsPlus;
 		for(unsigned int j = 0; j < sectorsPlus; j++) {
@@ -184,8 +199,9 @@ void Eel::construct(const float time, bool init) {
 			indices.push_back(bodyLastRing + j + 1);
 		}
 
+		// Tail
 		for(unsigned int i = 0; i < halfSectors; i++) {
-			for(unsigned int j = 1; j < sectorsPlus - 1; j++) {
+			for(unsigned int j = 0; j < sectorsPlus - 1; j++) {
 				indices.push_back(bodyVertexCount + i * sectorsPlus + j);
 				indices.push_back(bodyVertexCount + (i + 1) * sectorsPlus + j + 1);
 				indices.push_back(bodyVertexCount + i * sectorsPlus + j + 1);
@@ -193,13 +209,6 @@ void Eel::construct(const float time, bool init) {
 				indices.push_back(bodyVertexCount + (i + 1) * sectorsPlus + j);
 				indices.push_back(bodyVertexCount + (i + 1) * sectorsPlus + j + 1);
 			}
-			// Fin's other side
-			indices.push_back(bodyVertexCount + i * sectorsPlus);
-			indices.push_back(bodyVertexCount + i * sectorsPlus + sectorsPlus - 1);
-			indices.push_back(bodyVertexCount + (i + 1) * sectorsPlus + sectorsPlus - 1);
-			indices.push_back(bodyVertexCount + i * sectorsPlus);
-			indices.push_back(bodyVertexCount + (i + 1) * sectorsPlus + sectorsPlus - 1);
-			indices.push_back(bodyVertexCount + (i + 1) * sectorsPlus);
 		}
 	}
 
