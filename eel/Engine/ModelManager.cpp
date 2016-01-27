@@ -32,6 +32,15 @@ void ModelManager::update(const float totalTimePassed, const float deltaTime) {
 	}
 }
 
+void ModelManager::toggleAnimation() {
+	for(auto model : modelListNDC) {
+		model.second->toggleAnimation();
+	}
+	for(auto model : modelList) {
+		model.second->toggleAnimation();
+	}
+}
+
 void ModelManager::deleteModel(const std::string& modelName) {
 	std::map<std::string, RenderObject*>::iterator it;
 	it = modelList.find(modelName);

@@ -14,11 +14,12 @@ public:
 
 	void draw(const GLuint program);
 	void update(const float totalTimePassed, const float deltaTime);
+	void toggleAnimation();
+	void setModel(const std::string& modelName, RenderObject* modelObject);
 	void deleteModel(const std::string& modelName);
 	void deleteNDCModel(const std::string& modelName);
 	const RenderObject& getModel(const std::string& modelName);
 	const RenderObject& getNDCModel(const std::string& modelName);
-	void setModel(const std::string& modelName, RenderObject* modelObject);
 };
 
 #endif // !_ENGINE_MODELMANAGER_H
