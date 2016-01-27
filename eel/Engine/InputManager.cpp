@@ -1,12 +1,6 @@
 #include "InputManager.h"
 
 InputManager::InputManager() {
-	for(int i = 0; i < 256; i++) {
-		keyMap[i] = false;
-	}
-	for(int i = 0; i < 32; i++) {
-		specialKeyMap[i] = false;
-	}
 	mouseCapture = false;
 	mouseMovementX = 0;
 	mouseMovementY = 0;
@@ -74,15 +68,22 @@ void InputManager::toggleMouseCapture() {
 	clearMouseMovement();
 }
 
-bool InputManager::getKeyState(unsigned char code) const {
-	return keyMap[code];
-}
-
-bool InputManager::getSpecialKeyState(int code) const {
-	if(code < 0 || code > 32) {
+bool InputManager::getKeyState(unsigned char code) {
+	try {
+		return keyMap.at(code);
+	} catch(const std::out_of_range& e) {
+		keyMap[code] = false;
 		return false;
 	}
-	return specialKeyMap[code];
+}
+
+bool InputManager::getSpecialKeyState(int code) {
+	try {
+		return specialKeyMap.at(code);
+	} catch(const std::out_of_range& e) {
+		specialKeyMap[code] = false;
+		return false;
+	}
 }
 
 int InputManager::getMouseMovementX() const {

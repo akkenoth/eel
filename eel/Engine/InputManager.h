@@ -1,13 +1,15 @@
 #ifndef _ENGINE_INPUTMANAGER_H
 #define _ENGINE_INPUTMANAGER_H
 
+#include <map>
+#include <stdexcept>
 #include "../Libs/glutWrapper.h"
 #include "../Structures/WindowInfo.h"
 
 class InputManager {
 private:
-	bool keyMap[256];
-	bool specialKeyMap[32];
+	std::map<unsigned char, bool> keyMap;
+	std::map<int, bool> specialKeyMap;
 	int mouseMovementX;
 	int mouseMovementY;
 	bool mouseCapture;
@@ -27,8 +29,8 @@ public:
 	void clearMouseMovement();
 	void toggleMouseCapture();
 
-	bool getKeyState(unsigned char code) const;
-	bool getSpecialKeyState(int code) const;
+	bool getKeyState(unsigned char code);
+	bool getSpecialKeyState(int code);
 	int getMouseMovementX() const;
 	int getMouseMovementY() const;
 };
