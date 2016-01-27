@@ -89,16 +89,6 @@ void Engine::initGLUT() {
 	std::cout << "Info | Vendor: " << glGetString(GL_VENDOR) << " | Renderer: " << glGetString(GL_RENDERER) << " | OpenGl version: " << glGetString(GL_VERSION) << std::endl;
 }
 
-void Engine::enterFullscreen() {
-	glutFullScreen();
-	isFullscreen = true;
-}
-
-void Engine::exitFullscreen() {
-	glutLeaveFullScreen();
-	isFullscreen = false;
-}
-
 /// Private static
 
 void Engine::idleCallback() {
@@ -143,10 +133,6 @@ void Engine::closeCallback() {
 void Engine::handleKeyboardCallback(unsigned char key, int x, int y) {
 	Engine* engine = static_cast<Engine*>(glutGetWindowData());
 	engine->getInputManager()->setKeyDown(key);
-	/*switch(key) {
-		default:
-			break;
-	}*/
 }
 
 void Engine::handleKeyboardUpCallback(unsigned char key, int x, int y) {
@@ -164,25 +150,23 @@ void Engine::handleKeyboardUpCallback(unsigned char key, int x, int y) {
 		case 'M':
 			engine->getInputManager()->toggleMouseCapture();
 			break;
+		case 't':
+		case 'T':
+			engine->getModelManager()->toggleAnimation();
+			break;
 	}
 }
 
 void Engine::handleKeyboardSpecialCallback(int key, int x, int y) {
 	Engine* engine = static_cast<Engine*>(glutGetWindowData());
 	SceneManager* sceneManager = engine->getSceneManager();
-	switch(key) {
-		case GLUT_KEY_UP:
-		case GLUT_KEY_DOWN:
-		case GLUT_KEY_LEFT:
-		case GLUT_KEY_RIGHT:
-			//engine->getInputManager()->setSpecialKeyDown(key);
-			break;
-	}
+	engine->getInputManager()->setSpecialKeyDown(key);
 }
 
 void Engine::handleKeyboardSpecialUpCallback(int key, int x, int y) {
 	Engine* engine = static_cast<Engine*>(glutGetWindowData());
 	SceneManager* sceneManager = engine->getSceneManager();
+	engine->getInputManager()->setSpecialKeyUp(key);
 	switch(key) {
 		case GLUT_KEY_F1:
 			if(sceneManager->getLight(0) != NULL) {
@@ -203,12 +187,6 @@ void Engine::handleKeyboardSpecialUpCallback(int key, int x, int y) {
 			if(sceneManager->getLight(3) != NULL) {
 				sceneManager->getLight(3)->toggle();
 			}
-			break;
-		case GLUT_KEY_UP:
-		case GLUT_KEY_DOWN:
-		case GLUT_KEY_LEFT:
-		case GLUT_KEY_RIGHT:
-			//engine->getInputManager()->setSpecialKeyUp(key);
 			break;
 	}
 }
@@ -252,9 +230,11 @@ void Engine::run() {
 
 void Engine::toggleFullscreen() {
 	if(isFullscreen) {
-		exitFullscreen();
+		glutLeaveFullScreen();
+		isFullscreen = false;
 	} else {
-		enterFullscreen();
+		glutFullScreen();
+		isFullscreen = true;
 	}
 }
 

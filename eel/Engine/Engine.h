@@ -29,8 +29,6 @@ private:
 	
 	void initGLEW();
 	void initGLUT();
-	void enterFullscreen();
-	void exitFullscreen();
 
 	static void idleCallback();
 	static void displayCallback();
