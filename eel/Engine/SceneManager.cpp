@@ -6,7 +6,7 @@ SceneManager::SceneManager() {
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	camera = new Camera(glm::vec3(0.0f, 0.0f, 5.0f));
+	camera = new Camera(glm::vec3(0.0f, 0.0f, 8.0f));
 	for(LightSource* l : lights) {
 		l = NULL;
 	}
