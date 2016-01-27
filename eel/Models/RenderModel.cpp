@@ -6,6 +6,7 @@ RenderModel::RenderModel() {
 	worldPosition = glm::vec3(0.0f);
 	rotation = glm::vec3(0.0f);
 	rotation = glm::vec3(0.0f);
+	animated = false;
 }
 
 RenderModel::~RenderModel() {
@@ -35,6 +36,10 @@ void RenderModel::setRotation(const glm::vec3& newRotation) {
 
 void RenderModel::setRotationSpeed(const glm::vec3& newRotationSpeed) {
 	rotationSpeed = newRotationSpeed * (float)(M_PI) / 180.0f;
+}
+
+void RenderModel::toggleAnimation() {
+	animated = !animated;
 }
 
 void RenderModel::rotate(float deltaTime) {

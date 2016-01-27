@@ -22,6 +22,7 @@ protected:
 	glm::vec3 worldPosition;
 	glm::vec3 rotation;
 	glm::vec3 rotationSpeed;
+	bool animated;
 
 	virtual void setAttribPointers() const;
 	virtual void rotate(float deltaTime);
@@ -39,6 +40,8 @@ public:
 	virtual void setPosition(const glm::vec3& newPosition);
 	virtual void setRotation(const glm::vec3& newRotation);
 	virtual void setRotationSpeed(const glm::vec3& newRotationSpeed);
+
+	virtual void toggleAnimation();
 
 	virtual void setBaseMaterial(float ambient, float diffusive, float specular, float shininess);
 	virtual void addMaterial(unsigned int index, const std::string& textureFileName, float ambient, float diffusive, float specular, float shininess, TextureLoader* textureLoader);
