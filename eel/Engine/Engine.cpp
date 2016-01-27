@@ -46,7 +46,7 @@ void Engine::initGLEW() {
 
 void Engine::initGLUT() {
 	int argc = 1;
-	char *argv[] = {"foobar"};
+	char *argv[] = {"Bin", NULL};
 	glutInit(&argc, argv);
 
 	if(context->core) {
@@ -94,7 +94,7 @@ void Engine::initGLUT() {
 /// Private static
 
 void Engine::idleCallback() {
-	Engine* engine = static_cast<Engine*>(glutGetWindowData());
+	// Engine* engine = static_cast<Engine*>(glutGetWindowData());
 	glutPostRedisplay();
 }
 
@@ -128,7 +128,7 @@ void Engine::reshapeCallback(int width, int height) {
 }
 
 void Engine::closeCallback() {
-	Engine* engine = static_cast<Engine*>(glutGetWindowData());
+	// Engine* engine = static_cast<Engine*>(glutGetWindowData());
 	glutLeaveMainLoop();
 }
 
@@ -161,14 +161,13 @@ void Engine::handleKeyboardUpCallback(unsigned char key, int x, int y) {
 
 void Engine::handleKeyboardSpecialCallback(int key, int x, int y) {
 	Engine* engine = static_cast<Engine*>(glutGetWindowData());
-	SceneManager* sceneManager = engine->getSceneManager();
 	engine->getInputManager()->setSpecialKeyDown(key);
 }
 
 void Engine::handleKeyboardSpecialUpCallback(int key, int x, int y) {
 	Engine* engine = static_cast<Engine*>(glutGetWindowData());
-	SceneManager* sceneManager = engine->getSceneManager();
 	engine->getInputManager()->setSpecialKeyUp(key);
+	SceneManager* sceneManager = engine->getSceneManager();
 	switch(key) {
 		case GLUT_KEY_F1:
 			if(sceneManager->getLight(0) != NULL) {
