@@ -61,7 +61,7 @@ void Eel::construct(const float time, bool init) {
 
 			glm::vec3 pos((float) (x - halfLength), (float) (y * radius), (float) (z * radius + offsetZ));
 			glm::vec3 norm((float) x/9.0 + normalX * radius, (float) (y * radius), (float) (z * radius));
-			glm::vec2 tex((float) (j * recip), (float) (1.0 - x/length));
+			glm::vec2 tex((float) (j * recip), (float) (1.0 + x/length));
 			vertices.push_back(VertexFormat(pos, norm, tex, color));
 		}
 	}
