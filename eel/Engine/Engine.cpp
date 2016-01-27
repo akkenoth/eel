@@ -83,7 +83,9 @@ void Engine::initGLUT() {
 	initGLEW();
 
 	glDebugMessageCallback(DebugOutput::printDebugOutput, NULL);
+	//GLenum severity = GL_DEBUG_SEVERITY_LOW | GL_DEBUG_SEVERITY_MEDIUM | GL_DEBUG_SEVERITY_HIGH | GL_DEBUG_SEVERITY_NOTIFICATION;
 	glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, NULL, GL_TRUE);
+	glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DEBUG_SEVERITY_NOTIFICATION, 0, NULL, GL_FALSE);
 	glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_GLUTMAINLOOP_RETURNS);
 
 	std::cout << "Info | Vendor: " << glGetString(GL_VENDOR) << " | Renderer: " << glGetString(GL_RENDERER) << " | OpenGl version: " << glGetString(GL_VERSION) << std::endl;
