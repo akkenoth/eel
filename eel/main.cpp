@@ -30,6 +30,7 @@ int main(int argc, char** argv) {
 
 	Skybox* skybox = new Skybox();
 	skybox->create(40.0f);
+	skybox->setRotation(glm::vec3(0.0f, 180.0f, 0.0f));
 	skybox->addMaterial(0, "Resources/Copyrighted/skybox1.png", 1.0f, 0.0f, 0.0f, 0.0f, engine->getTextureLoader());
 	engine->getModelManager()->setModel("skybox", skybox);
 
@@ -38,7 +39,7 @@ int main(int argc, char** argv) {
 	floorBox->setPosition(glm::vec3(0.0f, -8.0f, 0.0f));
 	engine->getModelManager()->setModel("floorBox", floorBox);
 
-	glm::vec3 sunPosition(8.7f, 20.0f, 11.1f);
+	glm::vec3 sunPosition(-8.7f, 20.0f, 11.1f);
 	engine->getSceneManager()->addLight(0, sunPosition, glm::vec3(1.0), 1.0f, 0.0, 0.0);
 	Sphere* sun = new Sphere();
 	sun->create(1.2f, 16, 16, glm::vec4(1.0f, 1.0f, 0.9f, 1.0f));
@@ -46,7 +47,7 @@ int main(int argc, char** argv) {
 	sun->setPosition(sunPosition);
 	engine->getModelManager()->setModel("sun", sun);
 
-	glm::vec3 lampPosition(10.0f, -1.0f, 10.0f);
+	glm::vec3 lampPosition(8.0f, -1.0f, 5.0f);
 	engine->getSceneManager()->addLight(0, lampPosition, glm::vec3(4.0f, 1.0f, 1.0f), 1.0f, 0.003f, 0.0005f);
 	Sphere* lamp = new Sphere();
 	lamp->create(0.3f, 16, 16, glm::vec4(1.0f, 0.2f, 0.2f, 1.0f));
