@@ -38,7 +38,7 @@ In the scene there are 2 sources of light (white - 'sun' and red - red sphere).
 * The animations are being calculated on CPU (possible performance bottleneck)
 
 ## Special thanks
-* [Vlad Badoiu](http://in2gpu.com/author/vlad-badoiu/) for his great [tutorial on modern OpenGL](http://in2gpu.com/opengl-3/).
+* [Vlad Badoiu](http://in2gpu.com/author/vlad-badoiu/), [Sergiu Craitoiu](http://in2gpu.com/author/sergiu-craitoiu/) and [Ana Mihut](http://in2gpu.com/author/ana-mihut/) for their great [tutorial on modern OpenGL](http://in2gpu.com/opengl-3/).
 * [Christian Schüler](http://www.thetenthplanet.de/about) for his [note on normal mapping without precomputed tangents](http://www.thetenthplanet.de/archives/1180)
 
 ## Copyright notice
