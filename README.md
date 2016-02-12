@@ -1,8 +1,9 @@
 # EEL
 Modern OpenGL (3+) sample program.
 
-For now it displays a rotating sphere with 2 materials and a normal map applied, 2 sources of light (white - 'sun' and red - red sphere) and a skybox.
-Finally it should display a (very simplified) 3D eel.
+It displays a (very simplified) 3D eel (with 2 materials, normal mapping and togglable animation) in a skybox with 2 sources of light.
+There is also a test-sphere present 'behind' the camera (assuming default camera orientation).
+In the scene there are 2 sources of light (white - 'sun' and red - red sphere).
 
 ## Main features
 * Working in OpenGL 3.3 Core profile
@@ -17,10 +18,12 @@ Finally it should display a (very simplified) 3D eel.
 * Mouse for camera rotation (when enabled - see below)
 * F to toggle fullscreen
 * M to toggle mouse capture (disabled on startup)
+* T to toggle animations (rotations)
 
 ## Requirements
 * OpenGL 3.3 capable graphic card, e.g. Intel HD Graphics 3000 (Intel Core 2nd gen CPUs), NVidia GeForce 8 series, ATI/AMD Radeon HD 2000 series and newer
 * C++11 compatible compiler (tested on modern GCC and VC++)
+* For Windows: installed VC++ 2015 redistributable package (due to included precompiled libpng file)
 * For non-Windows OS: installed OpenGL, GLUT, GLEW, zlib and libpng libraries (Windows headers and pre-compiled .lib files are included)
 
 ## Compilation & running the program
@@ -29,8 +32,10 @@ Finally it should display a (very simplified) 3D eel.
 * Linux/*nix: use provided Makefile (`make` or `make run` should be enough).
 
 ## Known issues:
-* Execution caveat: hardcoded relative paths to textures (in main.cpp). Run from 'eel' directory (with Resources directory in it - see Makefile) or modify the paths (or change the way they're passed).
+* Execution caveat: hardcoded relative paths to textures (in main.cpp). Run from 'eel' directory (with Resources directory in it - see Makefile) or modify the paths (or change the way they're passed). Using VC++ run target or `make run` will handle it for you though.
 * Mouse capture may not be working in MacOS (GLUT limitations; should work with up-to-date GLUT though)
+* The OOP design of the program is quite poor
+* The animations are being calculated on CPU (possible performance bottleneck)
 
 ## Special thanks
 * [Vlad Badoiu](http://in2gpu.com/author/vlad-badoiu/) for his great [tutorial on modern OpenGL](http://in2gpu.com/opengl-3/).
