@@ -1,7 +1,6 @@
 #include "Eel.h"
 
 Eel::Eel() : RenderModel() {}
-
 Eel::~Eel() {}
 
 void Eel::create(GLfloat length, GLfloat radius, GLuint sectors, const glm::vec4& color) {

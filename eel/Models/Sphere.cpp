@@ -1,7 +1,6 @@
 #include "Sphere.h"
 
 Sphere::Sphere() : RenderModel() {}
-
 Sphere::~Sphere() {}
 
 void Sphere::create(GLfloat radius, GLuint rings, GLuint sectors, const glm::vec4& color) {
@@ -48,7 +47,6 @@ void Sphere::create(GLfloat radius, GLuint rings, GLuint sectors, const glm::vec
 
 	setAttribPointers();
 
-	// Finish
 	this->vao = vao;
 	this->vbos.push_back(vbo);
 	this->vbos.push_back(ibo);
@@ -56,19 +54,16 @@ void Sphere::create(GLfloat radius, GLuint rings, GLuint sectors, const glm::vec
 }
 
 void Sphere::update(const float totalTimePassed, const float deltaTime, const bool force) {
-	rotate(deltaTime);
+	if(animated) {
+		rotate(deltaTime);
+	}
 }
 
 void Sphere::draw(const GLuint program) {
 	glBindVertexArray(vao);
 
-	// Set model position and rotation vectors
 	setPositionUniforms(program);
 	setMaterialUniforms(program);
 
-	// Draw
-	//glCullFace(GL_FRONT);
 	glDrawElements(GL_TRIANGLES, indicesCount, GL_UNSIGNED_INT, 0);
-	//glCullFace(GL_BACK);
-	//glDrawElements(GL_TRIANGLES, indicesCount, GL_UNSIGNED_INT, 0);
 }

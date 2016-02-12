@@ -1,7 +1,6 @@
 #include "Tetragon.h"
 
-Tetragon::Tetragon() {}
-
+Tetragon::Tetragon() : RenderModel() {}
 Tetragon::~Tetragon() {}
 
 void Tetragon::create() {
